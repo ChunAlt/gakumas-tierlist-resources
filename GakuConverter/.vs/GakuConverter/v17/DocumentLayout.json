@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|solutionrelative:GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GakuConverter.py",
+              "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py",
+              "RelativeDocumentMoniker": "GakuConverter.py",
+              "ToolTip": "C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py",
+              "RelativeToolTip": "GakuConverter.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-27T21:01:36.922Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

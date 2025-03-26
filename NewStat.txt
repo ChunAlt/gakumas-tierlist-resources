@@ -1,0 +1,6 @@
+-New Column in Spreadsheets
+-constants.js - New constant
+-weights.js - New property, new input
+-TierList.js - processCards function
+-SelectedCard.js - stat calculation
+-App.js - New property
