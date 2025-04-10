@@ -32,6 +32,7 @@ function defaultProState() {
             upgrade: [1, 2],
             cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
             removal: 3,
+            hajime: false,
         },
         voice: {
             type: 0,
@@ -387,7 +388,7 @@ class Weights extends React.Component {
                         </div>
                         <br />
                         <div className="weight-row">
-                            <div className="section-header">Lesson Parameters</div>
+                            <div className="section-header">Lesson & Audition Parameters</div>
                             <div className="section-subheader">
                                 Note: 'Lessons' is the number of SP, Normal, and Oikomi lessons<br />
                             </div>
@@ -488,7 +489,13 @@ class Weights extends React.Component {
                             <label for="drink">P Drinks</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="drink" value={this.state.general.drink} min={0} max={50} step={1} />
                         </div>    
-                        
+
+                            <div className="weight-row">
+                            <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state[this.state.currentState].hajime} id="hajime" />
+                                <label for="hajime">Hajime?</label>
+                            </div>
+
+
 
 
                     </>

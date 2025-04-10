@@ -182,8 +182,7 @@ class TierList extends React.Component {
                 <div className="weight-row">
                     <button id="results-toggle" type="button" onClick={this.onToggleResults}>{this.state.show ? "Hide Results" : "Show Results"}</button>
                 </div>
-                {
-                    this.state.show &&
+
                     <>
                         <div className="number-table-container">
                             <div className="number-table">
@@ -218,7 +217,7 @@ class TierList extends React.Component {
                         </div>
                         <br />
                     </>
-                }
+                
             </div>
         );
 
@@ -348,7 +347,7 @@ function processScores(processedCards, weights, selectedCards) {
     selectedCards = selectedCards.slice();
     let startingStats = [0, 0, 0];
     startingStats = startingStats.map((stat, index) => stat + weights.idolStats[index] + weights.memStats[index]);
-    
+
 
     let idolMemMult = [0, 0, 0];
     idolMemMult = idolMemMult.map((stat, index) => stat + weights.idolMult[index] + weights.memMult[index]);
@@ -356,6 +355,7 @@ function processScores(processedCards, weights, selectedCards) {
 
     let cardBonus = [0, 0, 0];
     let cardStartBonus = [0, 0, 0];
+    let cardMultBonus = [0, 0, 0];
 
     let spRate = weights.spRate;
     for (let card = 0; card < selectedCards.length; card++) {
@@ -365,20 +365,26 @@ function processScores(processedCards, weights, selectedCards) {
         let matchingCards = processedCards.find(processedCards => processedCards.id === cardID && processedCards.lb === cardLB);
 
         startingStats[type] += matchingCards.info.start_b;
-        startingMult[type] += (matchingCards.info.pb*100);
-        
+        startingMult[type] += (matchingCards.info.pb * 100);
+
         spRate += matchingCards.info.spRate;
 
         cardBonus[type] += matchingCards.score;
 
         cardStartBonus[type] += matchingCards.info.start_b;
-        
+        cardMultBonus[type] += matchingCards.info.pb * weights.vocalLessons[0];
     }
-    let examBonus = 50;
+
+    let examBonus = 0;
+    if (weights.hajime === true) {
+        examBonus += 50;
+    }
+
+    console.log(weights.hajime)
     
     let lessonGain = [(1 + (idolMemMult[0] / 100)) * weights.vocalLessons[0], (1 + (idolMemMult[1] / 100)) * weights.danceLessons[0], (1 + (idolMemMult[2] / 100)) * weights.visualLessons[0]]
     
-    let finalScore = startingStats.map((stat, index) => stat + cardBonus[index] + lessonGain[index] + weights.classroomStats[index] + examBonus - cardStartBonus[index]);
+    let finalScore = startingStats.map((stat, index) => stat + cardBonus[index] + lessonGain[index] + weights.classroomStats[index] + examBonus - cardStartBonus[index] - cardMultBonus[index]);
     let roundedScore = Object.fromEntries(
         Object.entries(finalScore).map(([key, value]) => [key, Math.min(value, weights.statCap)])
     );
