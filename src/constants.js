@@ -123,9 +123,19 @@ export const supportCardProperties = {
         shorthand: "/FPP Card"
     },
 
-    remove_b: {
-        friendly_name: "Remove Bonus",
-        shorthand: "/Remove"
+    delete: {
+        friendly_name: "Delete Bonus",
+        shorthand: "/Delete"
+    },
+
+    a_delete: {
+        friendly_name: "Active Delete Bonus",
+        shorthand: "/A. Delete"
+    },
+
+    m_delete: {
+        friendly_name: "Mental Delete Bonus",
+        shorthand: "/M. Delete"
     },
 
     pdb: {

@@ -96,7 +96,19 @@ function SelectedCards(props) {
         statGains += card.str_cb * props.weights.cardAcq[7];
         statGains += card.fpp_cb * props.weights.cardAcq[8];
 
-        statGains += card.remove_b * props.weights.removal;
+        statGains += card.delete * (props.weights.delete[0] + props.weights.delete[1]);
+
+        if (props.weights.delete[0] > 2) {
+            statGains += card.a_delete * 3;
+        } else {
+            statGains += card.a_delete * props.weights.delete[0];
+        }
+
+        if (props.weights.delete[1] > 2) {
+            statGains += card.m_delete * 3;
+        } else {
+            statGains += card.m_delete * props.weights.delete[1];
+        }
 
         // Convert stat gains to score
         score += Math.round(statGains);

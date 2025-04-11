@@ -182,7 +182,8 @@ class TierList extends React.Component {
                 <div className="weight-row">
                     <button id="results-toggle" type="button" onClick={this.onToggleResults}>{this.state.show ? "Hide Results" : "Show Results"}</button>
                 </div>
-
+                {
+                    this.state.show &&
                     <>
                         <div className="number-table-container">
                             <div className="number-table">
@@ -199,7 +200,7 @@ class TierList extends React.Component {
                                     <tbody>
                                         {resultsTable.map((row, rowIndex) => (
                                             <tr key={rowIndex}>
-                                                <td><b>{rowLabels[rowIndex]}</b></td> 
+                                                <td><b>{rowLabels[rowIndex]}</b></td>
                                                 {row.map((num, colIndex) => (
                                                     <td key={colIndex}>
                                                         {rowIndex === 1 ? `${num}%` : num}
@@ -210,14 +211,14 @@ class TierList extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                         </div>
                         <div>
-                            Estimated exam score needed for each grade (Hajime): SS+: {examReq[0]}, SS: {examReq[1]}, S+: {examReq[2]}, S: {examReq[3]}, A+: {examReq[4]}               
+                            Estimated exam score needed for each grade (Hajime): SS+: {examReq[0]}, SS: {examReq[1]}, S+: {examReq[2]}, S: {examReq[3]}, A+: {examReq[4]}
                         </div>
                         <br />
                     </>
-                
+                }
             </div>
         );
 
@@ -326,7 +327,19 @@ function processCards(cards, weights, selectedCards) {
         statGains += card.str_cb * weights.cardAcq[7];
         statGains += card.fpp_cb * weights.cardAcq[8];
 
-        statGains += card.remove_b * weights.removal;
+        statGains += card.delete * (weights.delete[0] + weights.delete[1]);
+
+        if (weights.delete[0] > 2) {
+            statGains += card.a_delete * 3;
+        } else {
+            statGains += card.a_delete * weights.delete[0];
+        }
+        
+        if (weights.delete[1] > 2) {
+            statGains += card.m_delete * 3;
+        } else {
+            statGains += card.m_delete * weights.delete[1];
+        }
 
         // Convert stat gains to score
         score += statGains;

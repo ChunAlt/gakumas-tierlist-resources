@@ -31,7 +31,7 @@ function defaultProState() {
             drink: 1,
             upgrade: [1, 2],
             cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
-            removal: 3,
+            delete: [2, 2],
             hajime: false,
         },
         voice: {
@@ -482,10 +482,16 @@ class Weights extends React.Component {
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="upgrade.1" value={this.state.general.upgrade[1]} min={0} max={50} step={1} />
 
                             <div className="section-subheader">
+                                Card Deletes
+                            </div>
+                            <label for="delete[0]">Active</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="delete.0" value={this.state.general.delete[0]} min={0} max={50} step={1} />
+                            <label for="delete[1]">Mental</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="delete.1" value={this.state.general.delete[1]} min={0} max={50} step={1} />
+
+                            <div className="section-subheader">
                                 Other
                             </div>
-                            <label for="removal">Card Removal</label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="removal" value={this.state.general.removal} min={0} max={50} step={1} />
                             <label for="drink">P Drinks</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="drink" value={this.state.general.drink} min={0} max={50} step={1} />
                         </div>    
