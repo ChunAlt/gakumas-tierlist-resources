@@ -33,6 +33,7 @@ function defaultProState() {
             cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
             delete: [2, 2],
             hajime: false,
+            eventStats: false,
         },
         voice: {
             type: 0,
@@ -496,11 +497,16 @@ class Weights extends React.Component {
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="drink" value={this.state.general.drink} min={0} max={50} step={1} />
                         </div>    
 
-                            <div className="weight-row">
-                            <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state[this.state.currentState].hajime} id="hajime" />
-                                <label for="hajime">Hajime?</label>
-                            </div>
+                        <div className="weight-row">
+                            <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state[this.state.currentState].eventStats} id="eventStats" />
+                            <label for="eventStats">Include event stats?</label>
+                        </div>
 
+                        <div className="weight-row">
+                        <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state[this.state.currentState].hajime} id="hajime" />
+                            <label for="hajime">Hajime?</label>
+                        </div>
+                            
 
 
 

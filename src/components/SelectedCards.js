@@ -15,6 +15,7 @@ function SelectedCards(props) {
     let signatures = [];
     let spRate = props.weights.spRate.slice();
     let pPoints = props.weights.memPoints;
+    let eventMax = 0;
 
     for (let i = 0; i < props.selectedCards.length; i++) {
         let lit_up = "";
@@ -109,6 +110,12 @@ function SelectedCards(props) {
         } else {
             statGains += card.m_delete * props.weights.delete[1];
         }
+
+        if (props.weights.eventStats === true) {
+            statGains += card.event;
+        }
+
+        eventMax += card.event;
 
         // Convert stat gains to score
         score += Math.round(statGains);
@@ -233,20 +240,20 @@ function SelectedCards(props) {
             spRateNIA[i] = 100
         }
     }
-    //console.log(spRateMaster)
-    //console.log(spRateNIA)
+
     let noSPMaster = [(100 - spRateMaster[0]) / 100, (100 - spRateMaster[1]) / 100, (100 - spRateMaster[2]) / 100];
-    //console.log(noSPMaster)
+
     let noSPMasterTot = Math.pow(1 - noSPMaster[0] * noSPMaster[1] * noSPMaster[2], 4);
-    //console.log(noSPMasterTot)
+    console.log(cards.length)
     let spRateMasterRound = Math.round(noSPMasterTot * 10000) / 100;
 
 
     let noSPNIA = [(100 - spRateNIA[0]) / 100, (100 - spRateNIA[1]) / 100, (100 - spRateNIA[2]) / 100];
-    console.log(noSPNIA)
     let spRateNIATot = Math.pow(1 - noSPNIA[0] * noSPNIA[1] * noSPNIA[2], 8);
-    console.log(spRateNIATot)
+    //console.log(spRateNIATot)
     let spRateNIARound = Math.round(spRateNIATot * 10000) / 100;
+    let eventAverage = Math.round((eventMax/cards.length)*10)/10
+
     
     return (
         <div className="selected-cards">
@@ -261,7 +268,10 @@ function SelectedCards(props) {
                 Master - SP Rate: <b>{spRateMaster[0]}%</b>/<b>{spRateMaster[1]}%</b>/<b>{spRateMaster[2]}%</b> - Probability at least 1 SP each week: <b>{spRateMasterRound.toFixed(2)}%</b><br />
                 NIA - SP Rate: <b>{spRateNIA[0]}%</b>/<b>{spRateNIA[1]}%</b>/<b>{spRateNIA[2]}%</b> - Probability at least 1 SP each week: <b>{spRateNIARound.toFixed(2)}%</b><br />
                 <i>(Base rates can be set to negative to find the probability of runs with, e.g., only Primary/Secondary SP Lessons)</i><br />
+                Average gain per stat event: <b>{eventAverage}</b><br />
                 Starting P Points: <b>{pPoints}</b>
+
+                
             </div>
             {/*
             <div>

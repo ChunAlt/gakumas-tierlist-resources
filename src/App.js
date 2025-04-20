@@ -35,6 +35,7 @@ class App extends React.Component {
                 cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
                 delete: [2, 2],
                 hajime: false,
+                eventStats: false,
             },
 
             selectedCards: [
@@ -99,7 +100,7 @@ class App extends React.Component {
             <div className="App">
                 <h1>Gakuen iDOLM@STER Support Card Tier List</h1>
                 <span className="section-explanation">
-                    (Last updated: 11/04/2025)<br />
+                    (Last updated: 20/04/2025)<br />
                     This website is a fork of this <a href="https://euophrys.github.io/uma-tiers/">Uma Musume Tier List website</a>.<br />
                     This tier list only considers stats from Support Abilities. It does not consider Signature quality, Card Events, or stats from Produce Items.<br/>
                 </span>

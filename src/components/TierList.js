@@ -341,6 +341,10 @@ function processCards(cards, weights, selectedCards) {
             statGains += card.m_delete * weights.delete[1];
         }
 
+        if (weights.eventStats === true) {
+            statGains += card.event;
+        }
+
         // Convert stat gains to score
         score += statGains;
 
