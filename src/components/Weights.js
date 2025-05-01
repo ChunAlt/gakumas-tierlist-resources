@@ -28,6 +28,7 @@ function defaultProState() {
             shop: 1,
             classroom: 7,
             classroomStats: [80, 80, 80],
+            replace: 3,
             drink: 1,
             upgrade: [1, 2],
             cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
@@ -358,13 +359,13 @@ class Weights extends React.Component {
                                 Routing
                             </div>
                             <div className="section-explanation">
-                                Standard Master and NIA routing: <b>6-7 days</b> of Gift/Date/Shop<br />
+                                Standard Master and NIA routing: <b>6-7 days</b> of Gift/Outing/Shop<br />
                                 Standard number of Classrooms/Business: <b>4 days</b> (Master), <b>7 days</b> (NIA)
                             </div>
 
                             <label for="gift">Gift</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="gift" value={this.state.general.gift} min={0} max={14} step={1} />
-                            <label for="date">Date</label>
+                            <label for="date">Outing</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="date" value={this.state.general.date} min={0} max={14} step={1} />
                             <label for="shop">Shop</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="shop" value={this.state.general.shop} min={0} max={14} step={1} />
@@ -452,7 +453,7 @@ class Weights extends React.Component {
 
                             
                             <br />
-                            <label for="cardAcq.2">Condition</label>
+                            <label for="cardAcq.2">Good Shape</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.2" value={this.state.general.cardAcq[2]} min={0} max={50} step={1} />
                             <label for="cardAcq.3"><b>Concentration</b></label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.3" value={this.state.general.cardAcq[3]} min={0} max={50} step={1} />
@@ -493,6 +494,10 @@ class Weights extends React.Component {
                             <div className="section-subheader">
                                 Other
                             </div>
+
+                            <label for="drink">Replacements</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="replace" value={this.state.general.replace} min={0} max={3} step={1} />
+
                             <label for="drink">P Drinks</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="drink" value={this.state.general.drink} min={0} max={50} step={1} />
                         </div>    

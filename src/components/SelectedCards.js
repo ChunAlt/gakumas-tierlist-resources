@@ -115,6 +115,12 @@ function SelectedCards(props) {
             statGains += card.event;
         }
 
+        if (props.weights.replace > 2) {
+            statGains += card.replace * 3;
+        } else {
+            statGains += card.replace * props.weights.replace;
+        }
+
         eventMax += card.event;
 
         // Convert stat gains to score

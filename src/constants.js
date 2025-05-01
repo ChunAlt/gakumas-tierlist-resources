@@ -89,8 +89,8 @@ export const supportCardProperties = {
     },
 
     cond_cb: {
-        friendly_name: "Condition Acquisition",
-        shorthand: "/Cond Card"
+        friendly_name: "Good Shape Acquisition",
+        shorthand: "/G.Shape Card"
     },
 
     conc_cb: {
@@ -136,6 +136,11 @@ export const supportCardProperties = {
     m_delete: {
         friendly_name: "Mental Delete Bonus",
         shorthand: "/M. Delete"
+    },
+
+    replace: {
+        friendly_name: "Replace Bonus",
+        shorthand: "/Replace"
     },
 
     pdb: {
