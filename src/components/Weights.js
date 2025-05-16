@@ -10,8 +10,103 @@ function defaultProState() {
     return {
         version: 1,
         currentState: "voice",
+        presets:true,
         show: false,
         general: {
+            statDist: [0, 0, 0],
+            idolStats: [80, 80, 80],
+            idolMult: [15, 15, 15],
+            memStats: [20, 20, 20],
+            memMult: [3, 3, 3],
+            memPoints: 30,
+            statCap: 1500,
+            vocalLessons: [800, 4, 4, 0],
+            danceLessons: [800, 4, 4, 0],
+            visualLessons: [800, 4, 4, 0],
+            spRate: [5, 5, 5],
+            rest: 3,
+            gift: 2,
+            date: 2,
+            shop: 2,
+            classroom: 3,
+            classroomStats: [110, 55, 30],
+            replace: 1,
+            drink: 3,
+            upgrade: [3, 4],
+            cardAcq: [6, 9, 4, 0, 4, 0, 4, 0, 0],
+            delete: [1, 1],
+            hajime: true,
+            eventStats: false,
+        },
+        voice: {
+            type: 0,
+        },
+        dance: {
+            type: 1,
+        },
+        visual: {
+            type: 2,
+        },
+        assist: {
+            type: 3,
+        },
+    }
+}
+
+function defaultMasterState() {
+    return {
+        version: 1,
+        currentState: "voice",
+        show: false,
+        general: {
+            statDist: [0, 0, 0],
+            idolStats: [80, 80, 80],
+            idolMult: [15, 15, 15],
+            memStats: [20, 20, 20],
+            memMult: [3, 3, 3],
+            memPoints: 30,
+            statCap: 1800,
+            vocalLessons: [800, 4, 4, 0],
+            danceLessons: [800, 4, 4, 0],
+            visualLessons: [800, 4, 4, 0],
+            spRate: [5, 5, 5],
+            rest: 0,
+            gift: 3,
+            date: 0,
+            shop: 3,
+            classroom: 4,
+            classroomStats: [95, 65, 50],
+            replace: 1,
+            drink: 3,
+            upgrade: [3, 5],
+            cardAcq: [7, 10, 5, 0, 5, 0, 5, 0, 0],
+            delete: [1, 3],
+            hajime: true,
+            eventStats: false,
+        },
+        voice: {
+            type: 0,
+        },
+        dance: {
+            type: 1,
+        },
+        visual: {
+            type: 2,
+        },
+        assist: {
+            type: 3,
+        },
+    }
+}
+
+function defaultNIAState() {
+    return {
+        version: 1,
+        currentState: "voice",
+        presets: true,
+        show: false,
+        general: {
+            statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
             memStats: [20, 20, 20],
@@ -60,13 +155,17 @@ class Weights extends React.Component {
         this.onTypeChanged = this.onTypeChanged.bind(this);
         this.onCapChanged = this.onCapChanged.bind(this);
         this.onMinimumChanged = this.onMinimumChanged.bind(this);
+        this.onTogglePresets = this.onTogglePresets.bind(this);
         this.onToggleWeights = this.onToggleWeights.bind(this);
         this.handleStatCapChange = this.handleStatCapChange.bind(this);
-        this.handleSpRateBonusChange = this.handleSpRateBonusChange.bind(this);
         this.onMotivationChanged = this.onMotivationChanged.bind(this);
-        this.onProReset = this.onProReset.bind(this);
+        this.onStatChange = this.onStatChange.bind(this)
 
-        this.state = defaultProState();
+        this.onProReset = this.onProReset.bind(this);
+        this.onMasterReset = this.onMasterReset.bind(this);
+        this.onNIAReset = this.onNIAReset.bind(this);
+
+        this.state = defaultNIAState();
         this.props.onChange(this.state[this.state.currentState], this.state.general);
     }
 
@@ -78,9 +177,163 @@ class Weights extends React.Component {
 
     onProReset() {
         let newState = defaultProState();
-        this.setState(newState);
-        this.props.onChange(newState[newState.currentState], newState.general);
+        let statDistTemp = this.state.general.statDist
+        const updatedVocalLessons = [];
+        const updatedDanceLessons = [];
+        const updatedVisualLessons = [];
+        const lessonStats = [
+            [635, 605, 460],
+            [3, 2, 2],
+            [2, 2, 0],
+            [0, 0, 1],
+        ];
+
+        //updatedClassroomStats[i] = classStats[statDistTemp[i]];
+        for (let i = 0; i < 4; i++) {
+            updatedVocalLessons[i] = lessonStats[i][statDistTemp[0]]
+            updatedDanceLessons[i] = lessonStats[i][statDistTemp[1]]
+            updatedVisualLessons[i] = lessonStats[i][statDistTemp[2]]
+        }
+
+        this.setState(newState, () => {
+            this.props.onChange(newState[newState.currentState], newState.general);
+
+            
+            this.setState(prevState => {
+                // Make shallow copies of arrays to avoid direct mutation
+                            
+
+                return {
+                    general: {
+                        ...prevState.general,
+                        statDist: statDistTemp,
+                        vocalLessons: updatedVocalLessons,
+                        danceLessons: updatedDanceLessons,
+                        visualLessons: updatedVisualLessons,
+                    }
+                };
+            });
+        });
     }
+
+    onMasterReset() {
+        let newState = defaultMasterState();
+        let statDistTemp = this.state.general.statDist
+        this.setState(newState, () => {
+            this.props.onChange(newState[newState.currentState], newState.general);
+
+            this.setState(prevState => {
+                // Make shallow copies of arrays to avoid direct mutation
+                const updatedClassroomStats = [...prevState.general.classroomStats];
+                const updatedVocalLessons = [...prevState.general.vocalLessons];
+                const updatedDanceLessons = [...prevState.general.danceLessons];
+                const updatedVisualLessons = [...prevState.general.visualLessons];
+                //const classStats = [0, 0, 540];
+                const lessonStats = [
+                    [800, 785, 235],
+                    [3, 3, 0],
+                    [2, 2, 0],
+                    [0, 0, 0],
+                ];
+
+                for (let i = 0; i < 4; i++) {
+                    updatedVocalLessons[i] = lessonStats[i][statDistTemp[0]]
+                }
+
+                for (let i = 0; i < 4; i++) {
+                    updatedDanceLessons[i] = lessonStats[i][statDistTemp[1]]
+                }
+
+                for (let i = 0; i < 4; i++) {
+                    updatedVisualLessons[i] = lessonStats[i][statDistTemp[2]]
+                }
+
+                return {
+                    general: {
+                        ...prevState.general,
+                        statDist: statDistTemp,
+                        classroomStats: updatedClassroomStats,
+                        vocalLessons: updatedVocalLessons,
+                        danceLessons: updatedDanceLessons,
+                        visualLessons: updatedVisualLessons,
+                    }
+                };
+            });
+        }, () => {
+        });
+    }
+
+    onNIAReset() {
+        let newState = defaultNIAState();
+        let statDistTemp = this.state.general.statDist
+        this.setState(newState, () => {
+            this.props.onChange(newState[newState.currentState], newState.general);
+
+            this.setState(prevState => {
+                // Make shallow copies of arrays to avoid direct mutation
+                const updatedClassroomStats = [...prevState.general.classroomStats];
+                const updatedVocalLessons = [...prevState.general.vocalLessons];
+                const updatedDanceLessons = [...prevState.general.danceLessons];
+                const updatedVisualLessons = [...prevState.general.visualLessons];
+                const classStats = [0, 0, 540];
+                const lessonStats = [
+                    [870, 780, 235],
+                    [4, 4, 0],
+                    [4, 4, 0],
+                    [0, 0, 0],
+                ];
+
+                for (let i = 0; i < 3; i++) {
+                    updatedClassroomStats[i] = classStats[statDistTemp[i]]
+                    console.log("Test")
+                    console.log(statDistTemp[i])
+                }
+
+                for (let i = 0; i < 4; i++) {
+                    updatedVocalLessons[i] = lessonStats[i][statDistTemp[0]]
+                }
+
+                for (let i = 0; i < 4; i++) {
+                    updatedDanceLessons[i] = lessonStats[i][statDistTemp[1]]
+                }
+
+                for (let i = 0; i < 4; i++) {
+                    updatedVisualLessons[i] = lessonStats[i][statDistTemp[2]]
+                }
+
+                return {
+                    general: {
+                        ...prevState.general,
+                        statDist: statDistTemp,
+                        classroomStats: updatedClassroomStats,
+                        vocalLessons: updatedVocalLessons,
+                        danceLessons: updatedDanceLessons,
+                        visualLessons: updatedVisualLessons,
+                    }
+                };
+            });
+        });
+    }
+
+    onStatChange = (event) => {
+        const {id, value} = event.target
+        const [key, indexStr] = id.split(".");
+        const index = parseInt(indexStr, 10);
+        const newValue = parseInt(value, 10);
+
+        this.setState(prevState => {
+            const updatedArray = [...prevState.general[key]];
+            updatedArray[index] = newValue;
+
+            return {
+                general: {
+                    ...prevState.general,
+                    [key]: updatedArray
+                }
+            };
+        }, () => {
+        });
+    };
 
     onSettingChanged(event, numberString, numberInput) {
         if (!event) return;
@@ -166,6 +419,10 @@ class Weights extends React.Component {
         this.props.onChange(settings, this.state.general);
     }
 
+    onTogglePresets(event) {
+        this.setState({ presets: !this.state.presets });
+    }
+
     onToggleWeights(event) {
         this.setState({show: !this.state.show});
     }
@@ -179,38 +436,6 @@ class Weights extends React.Component {
         }))
     }
 
-    handleSpRateBonusChange(value) {
-        if (value === 0) {
-            this.setState((prevState) => ({
-                general: {
-                    ...prevState.general,
-                    spRateBonus: [5, 0, 0],
-                },
-            }))
-        } else if (value === 1) {
-            this.setState((prevState) => ({
-                general: {
-                    ...prevState.general,
-                    spRateBonus: [0, 5, 0],
-                },
-            }))
-        } else if (value === 2) {
-            this.setState((prevState) => ({
-                general: {
-                    ...prevState.general,
-                    spRateBonus: [0, 0, 5],
-                },
-            }))
-        } else {
-            this.setState((prevState) => ({
-                general: {
-                    ...prevState.general,
-                    spRateBonus: [0, 0, 0],
-                },
-            }))
-        }  
-    }
-
     arrayEquals(a, b) {
         if (a.length !== b.length) return false;
         return a.every((val, index) => val === b[index]);
@@ -219,7 +444,10 @@ class Weights extends React.Component {
     
     
     render() {
-        console.log(this.state.general.spRateBonus)
+        console.log("Vocal:")
+        console.log(this.state.general.statDist[0])
+        /*console.log(this.state.general.statDist[1])
+        console.log(this.state.general.statDist[2])*/
         return (
             <div className="weights">
                 <div className="weight-row">
@@ -228,49 +456,68 @@ class Weights extends React.Component {
                     <input id="visual" type="image" className={this.state.currentState == "visual" ? "image-btn selected" : "image-btn"} src={VisualIcon} onClick={this.onTypeChanged} alt="Visual" />
                     <input id="assist" type="image" className={this.state.currentState == "assist" ? "image-btn selected" : "image-btn"} src={AssistIcon} onClick={this.onTypeChanged} alt="Assist" />
                 </div>
-                <div className="weight-row">
-                    <button id="weights-toggle" type="button" onClick={this.onToggleWeights}>{this.state.show ? "Customize Settings" : "Hide Settings"}</button>
+
+                <div>
+                    <button id="presets-toggle" type="button" onClick={this.onTogglePresets}>{this.state.presets ? "Hide Presets" : "Show Presets"}</button>
                 </div>
                 {
-                    !this.state.show &&
-                    <>
-                        <div className="radio-container">
-                            <div className="section-header">
-                                Stat Cap 
+                    this.state.presets &&
+                    <div className="preset-box">
+                        <div className="weight-row">
+                            <div class="section-header">Scenario Presets</div>
+                            <div class="section-explanation">
+                                Changes settings to typical parameters for selected scenario<br/>
+                                    Additional manual adjustments is recommended<br />
+                                    <b>Bug: changes do not apply properly until a value in settings is changed</b>
                             </div>
-                            <div className="section-explanation">
-                            (Bug: changes do not apply until you change one of the other numbers)
+                            <div className="weight-row">
+                                <label htmlFor="stat-select">Vocal: </label>
+                                <select id="statDist.0" value={this.state.general.statDist[0]} onChange={this.onStatChange}>
+                                    <option value={0}>Primary</option>
+                                    <option value={1}>Secondary</option>
+                                    <option value={2}>Tertiary</option>
+                                </select>
+
+                                <label htmlFor="stat-select">Dance: </label>
+                                <select id="statDist.1" value={this.state.general.statDist[1]} onChange={this.onStatChange}>
+                                    <option value={0}>Primary</option>
+                                    <option value={1}>Secondary</option>
+                                    <option value={2}>Tertiary</option>
+                                </select>
+
+                                <label htmlFor="stat-select">Visual: </label>
+                                <select id="statDist.2" value={this.state.general.statDist[2]} onChange={this.onStatChange}>
+                                    <option value={0}>Primary</option>
+                                    <option value={1}>Secondary</option>
+                                    <option value={2}>Tertiary</option>
+                                </select>
                             </div>
-                            <div className="radio-label">
-                                <label> 
-                                    <b>1500</b> (Pro)
-                                    <input
-                                        type="radio"
-                                        value="1500"
-                                        checked={this.state.general.statCap === 1500}
-                                        onChange={() => this.handleStatCapChange(1500)}
-                                    />
-                                </label>
-                                <label> 
-                                    <b>1800</b> (Master)
-                                    <input
-                                        type="radio"
-                                        value="1800"
-                                        checked={this.state.general.statCap === 1800}
-                                        onChange={() => this.handleStatCapChange(1800)}
-                                    />
-                                </label>
-                                <label>
-                                    <b>2000</b> (NIA)
-                                    <input
-                                        type="radio"
-                                        value="2000"
-                                        checked={this.state.general.statCap === 2000}
-                                        onChange={() => this.handleStatCapChange(2000)}
-                                    />
-                                </label>
-                            </div>
+
+                            <button id="reset-weights-Pro" type="button" onClick={this.onProReset}>Hajime Pro</button>
+                            <button id="reset-weights-Master" type="button" onClick={this.onMasterReset}>Hajime Master (+45)</button>
+                            <br/>
+                            <button id="reset-weights-NIA" type="button" onClick={this.onNIAReset}>NIA</button>
+                            
+
+                            
                         </div>
+                    </div>
+                }
+
+
+                <br />
+                <div className="weight-row">
+                    <button id="weights-toggle" type="button" onClick={this.onToggleWeights}>{this.state.show ? "Hide Settings" : "Customise Settings"}</button>
+                </div>
+                {
+                    this.state.show &&
+                    <>
+                        <div className="section-header">
+                            Stat Cap
+                            <label for="statCap"></label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="statCap" value={this.state.general.statCap} min={0} max={3000} step={100} />
+                        </div>
+                        
 
                         <div className="starting-stats-container">
                             <div className="starting-stats left">
@@ -344,14 +591,15 @@ class Weights extends React.Component {
                             <div className="section-explanation">
                                 Your idol's base rate for SP Lessons <br />
                                 (i.e. <b>0%</b> at Training Lvl 0-1, <b>5%</b> at Training Lvl 2-5, <b>10%</b> at Training Lvl 6)<br />
-                                (Limited SSR P-idols get <b>+15%</b> to their main stat at LB1)
+                                (Seasonal Lim. P-idols get <b>+15%</b> to their main stat at LB1)<br />
+                                (FES Lim P-idols get <b>15%</b> SP Rate at Training 6 instead of <b>10%</b>)
                             </div>
                             <label for="spRate.0">Voice</label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="spRate.0" value={this.state.general.spRate[0]} min={-100} max={25} step={5} />%
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="spRate.0" value={this.state.general.spRate[0]} min={-100} max={100} step={5} />%
                             <label for="spRate.1">Dance</label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="spRate.1" value={this.state.general.spRate[1]} min={-100} max={25} step={5} />%
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="spRate.1" value={this.state.general.spRate[1]} min={-100} max={100} step={5} />%
                             <label for="spRate.2">Visual</label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="spRate.2" value={this.state.general.spRate[2]} min={-100} max={25} step={5} />%
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="spRate.2" value={this.state.general.spRate[2]} min={-100} max={100} step={5} />%
                         </div>
                         <br />
                         <div className="weight-row">
@@ -503,12 +751,12 @@ class Weights extends React.Component {
                         </div>    
 
                         <div className="weight-row">
-                            <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state[this.state.currentState].eventStats} id="eventStats" />
+                            <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state.general.eventStats} id="eventStats" />
                             <label for="eventStats">Include event stats?</label>
                         </div>
 
                         <div className="weight-row">
-                        <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state[this.state.currentState].hajime} id="hajime" />
+                        <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state.general.hajime} id="hajime" />
                             <label for="hajime">Hajime?</label>
                         </div>
                             

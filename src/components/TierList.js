@@ -402,8 +402,6 @@ function processScores(processedCards, weights, selectedCards) {
     if (weights.hajime === true) {
         examBonus += 50;
     }
-
-    console.log(weights.hajime)
     
     let lessonGain = [(1 + (idolMemMult[0] / 100)) * weights.vocalLessons[0], (1 + (idolMemMult[1] / 100)) * weights.danceLessons[0], (1 + (idolMemMult[2] / 100)) * weights.visualLessons[0]]
     

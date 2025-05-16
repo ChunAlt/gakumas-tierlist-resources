@@ -330,3 +330,15 @@ label {
 .support-card:hover .supportTooltip {
     display: block;
 }
+
+.preset-box {
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    padding: 16px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    max-width: 800px; /* Adjust width as needed */
+    border-radius: 8px;
+}
