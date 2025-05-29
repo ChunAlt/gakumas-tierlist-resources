@@ -143,9 +143,14 @@ export const supportCardProperties = {
         shorthand: "/Replace"
     },
 
-    pdb: {
-        friendly_name: "P Drink Bonus",
-        shorthand: "/Drink"
+    drink_acq: {
+        friendly_name: "P Drink Acquisition",
+        shorthand: "/Drink Acq"
+    },
+
+    drink_buy: {
+        friendly_name: "P Drink Exchange",
+        shorthand: "/Drink Buy"
     },
 
     eb: {

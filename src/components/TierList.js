@@ -309,7 +309,10 @@ function processCards(cards, weights, selectedCards) {
         statGains += card.date_b * weights.date;
         statGains += card.shop_b * weights.shop;
         statGains += card.class_b * weights.classroom;
-        statGains += card.pdb * weights.drink;
+
+        statGains += card.drink_acq * weights.drink[0];
+        statGains += card.drink_buy * weights.drink[1];
+
         statGains += card.eb;
         
         statGains += card.ub * weights.upgrade.reduce((total, current) => total + current, 0);

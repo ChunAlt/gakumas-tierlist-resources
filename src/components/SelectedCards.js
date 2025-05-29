@@ -79,7 +79,10 @@ function SelectedCards(props) {
         statGains += card.date_b * props.weights.date;
         statGains += card.shop_b * props.weights.shop;
         statGains += card.class_b * props.weights.classroom;
-        statGains += card.pdb * props.weights.drink;
+
+        statGains += card.drink_acq * props.weights.drink[0];
+        statGains += card.drink_buy * props.weights.drink[1];
+
         statGains += card.eb;
 
         statGains += card.ub * props.weights.upgrade.reduce((total, current) => total + current, 0);

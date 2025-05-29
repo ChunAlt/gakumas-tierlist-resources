@@ -31,7 +31,7 @@ function defaultProState() {
             classroom: 3,
             classroomStats: [110, 55, 30],
             replace: 1,
-            drink: 3,
+            drink: [10, 3],
             upgrade: [3, 4],
             cardAcq: [6, 9, 4, 0, 4, 0, 4, 0, 0],
             delete: [1, 1],
@@ -77,7 +77,7 @@ function defaultMasterState() {
             classroom: 4,
             classroomStats: [95, 65, 50],
             replace: 1,
-            drink: 3,
+            drink: [10, 3],
             upgrade: [3, 5],
             cardAcq: [7, 10, 5, 0, 5, 0, 5, 0, 0],
             delete: [1, 3],
@@ -124,7 +124,7 @@ function defaultNIAState() {
             classroom: 7,
             classroomStats: [80, 80, 80],
             replace: 3,
-            drink: 1,
+            drink: [12, 2],
             upgrade: [1, 2],
             cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
             delete: [2, 2],
@@ -740,14 +740,21 @@ class Weights extends React.Component {
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="delete.1" value={this.state.general.delete[1]} min={0} max={50} step={1} />
 
                             <div className="section-subheader">
+                                P Drinks
+                            </div>
+                            <label for="drink[0]">Total Acquisition</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="drink.0" value={this.state.general.drink[0]} min={0} max={50} step={1} />
+                            <label for="drink[1]">Exchanged</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="drink.1" value={this.state.general.drink[1]} min={0} max={50} step={1} />
+
+                            <div className="section-subheader">
                                 Other
                             </div>
 
                             <label for="drink">Replacements</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="replace" value={this.state.general.replace} min={0} max={3} step={1} />
 
-                            <label for="drink">P Drinks</label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="drink" value={this.state.general.drink} min={0} max={50} step={1} />
+                            
                         </div>    
 
                         <div className="weight-row">
