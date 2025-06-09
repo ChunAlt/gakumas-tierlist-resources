@@ -124,6 +124,12 @@ function SelectedCards(props) {
             statGains += card.replace * props.weights.replace;
         }
 
+        if (props.weights.replace > 5) {
+            statGains += card.cust * 6;
+        } else {
+            statGains += card.cust * props.weights.custom;
+        }
+
         eventMax += card.event;
 
         // Convert stat gains to score
@@ -253,7 +259,7 @@ function SelectedCards(props) {
     let noSPMaster = [(100 - spRateMaster[0]) / 100, (100 - spRateMaster[1]) / 100, (100 - spRateMaster[2]) / 100];
 
     let noSPMasterTot = Math.pow(1 - noSPMaster[0] * noSPMaster[1] * noSPMaster[2], 4);
-    console.log(cards.length)
+    //console.log(cards.length)
     let spRateMasterRound = Math.round(noSPMasterTot * 10000) / 100;
 
 

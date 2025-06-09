@@ -4,38 +4,42 @@ import VoiceIcon from '../icons/utx_ico_obtain_00.png';
 import DanceIcon from '../icons/utx_ico_obtain_01.png';
 import VisualIcon from '../icons/utx_ico_obtain_02.png';
 import AssistIcon from '../icons/utx_ico_obtain_03.png';
+import allPresets from '../presets';
 import { lsTest } from '../utils';
 
-function defaultProState() {
+function presetState(selectedPreset, prevPreset, dist, vocal, dance, visual, classStats, hajimeStats) {
     return {
         version: 1,
         currentState: "voice",
         presets:true,
         show: false,
-        general: {
-            statDist: [0, 0, 0],
+        general: {            
+            preset: prevPreset,
+            statDist: dist,
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
             memStats: [20, 20, 20],
             memMult: [3, 3, 3],
             memPoints: 30,
-            statCap: 1500,
-            vocalLessons: [800, 4, 4, 0],
-            danceLessons: [800, 4, 4, 0],
-            visualLessons: [800, 4, 4, 0],
+
+            statCap: selectedPreset.statCap,
+            vocalLessons: vocal,
+            danceLessons: dance,
+            visualLessons: visual,
             spRate: [5, 5, 5],
-            rest: 3,
-            gift: 2,
-            date: 2,
-            shop: 2,
-            classroom: 3,
-            classroomStats: [110, 55, 30],
-            replace: 1,
-            drink: [10, 3],
-            upgrade: [3, 4],
-            cardAcq: [6, 9, 4, 0, 4, 0, 4, 0, 0],
-            delete: [1, 1],
-            hajime: true,
+            rest: selectedPreset.rest,
+            gift: selectedPreset.gift,
+            date: selectedPreset.date,
+            shop: selectedPreset.shop,
+            classroom: selectedPreset.classroom,
+            classroomStats: classStats,
+            replace: selectedPreset.replace,
+            drink: [selectedPreset.drink0, selectedPreset.drink1],
+            upgrade: [selectedPreset.upgrade0, selectedPreset.upgrade1],
+            cardAcq: [selectedPreset.cardAcq0, selectedPreset.cardAcq1, selectedPreset.cardAcq2, selectedPreset.cardAcq3, selectedPreset.cardAcq4, selectedPreset.cardAcq5, selectedPreset.cardAcq6, selectedPreset.cardAcq7, selectedPreset.cardAcq8],
+            delete: [selectedPreset.delete0, selectedPreset.delete1],
+            custom: selectedPreset.customs,
+            hajime: hajimeStats,
             eventStats: false,
         },
         voice: {
@@ -53,59 +57,14 @@ function defaultProState() {
     }
 }
 
-function defaultMasterState() {
-    return {
-        version: 1,
-        currentState: "voice",
-        show: false,
-        general: {
-            statDist: [0, 0, 0],
-            idolStats: [80, 80, 80],
-            idolMult: [15, 15, 15],
-            memStats: [20, 20, 20],
-            memMult: [3, 3, 3],
-            memPoints: 30,
-            statCap: 1800,
-            vocalLessons: [800, 4, 4, 0],
-            danceLessons: [800, 4, 4, 0],
-            visualLessons: [800, 4, 4, 0],
-            spRate: [5, 5, 5],
-            rest: 0,
-            gift: 3,
-            date: 0,
-            shop: 3,
-            classroom: 4,
-            classroomStats: [95, 65, 50],
-            replace: 1,
-            drink: [10, 3],
-            upgrade: [3, 5],
-            cardAcq: [7, 10, 5, 0, 5, 0, 5, 0, 0],
-            delete: [1, 3],
-            hajime: true,
-            eventStats: false,
-        },
-        voice: {
-            type: 0,
-        },
-        dance: {
-            type: 1,
-        },
-        visual: {
-            type: 2,
-        },
-        assist: {
-            type: 3,
-        },
-    }
-}
-
-function defaultNIAState() {
+function defaultState() {
     return {
         version: 1,
         currentState: "voice",
         presets: true,
         show: false,
         general: {
+            preset: 5,
             statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
@@ -128,6 +87,7 @@ function defaultNIAState() {
             upgrade: [1, 2],
             cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
             delete: [2, 2],
+            custom: 4,
             hajime: false,
             eventStats: false,
         },
@@ -161,11 +121,9 @@ class Weights extends React.Component {
         this.onMotivationChanged = this.onMotivationChanged.bind(this);
         this.onStatChange = this.onStatChange.bind(this)
 
-        this.onProReset = this.onProReset.bind(this);
-        this.onMasterReset = this.onMasterReset.bind(this);
-        this.onNIAReset = this.onNIAReset.bind(this);
+        this.onPreset = this.onPreset.bind(this);
 
-        this.state = defaultNIAState();
+        this.state = defaultState();
         this.props.onChange(this.state[this.state.currentState], this.state.general);
     }
 
@@ -175,47 +133,50 @@ class Weights extends React.Component {
         }
     }
 
-    onProReset() {
-        let newState = defaultProState();
+    onPreset() {
+        let presetIndex = this.state.general.preset;
+        let thisPreset = allPresets[presetIndex];
         let statDistTemp = this.state.general.statDist
+        const lessonStats = [
+            [thisPreset.primaryLessons0, thisPreset.secondaryLessons0, thisPreset.tertiaryLessons0],
+            [thisPreset.primaryLessons1, thisPreset.secondaryLessons1, thisPreset.tertiaryLessons1],
+            [thisPreset.primaryLessons2, thisPreset.secondaryLessons2, thisPreset.tertiaryLessons2],
+            [thisPreset.primaryLessons3, thisPreset.secondaryLessons3, thisPreset.tertiaryLessons3],
+        ];
+        const classStats = [thisPreset.classroomStats0, thisPreset.classroomStats1, thisPreset.classroomStats2];
+        
         const updatedVocalLessons = [];
         const updatedDanceLessons = [];
         const updatedVisualLessons = [];
-        const lessonStats = [
-            [635, 605, 460],
-            [3, 2, 2],
-            [2, 2, 0],
-            [0, 0, 1],
-        ];
-
-        //updatedClassroomStats[i] = classStats[statDistTemp[i]];
+        const updatedClassroomStats = [];
         for (let i = 0; i < 4; i++) {
             updatedVocalLessons[i] = lessonStats[i][statDistTemp[0]]
             updatedDanceLessons[i] = lessonStats[i][statDistTemp[1]]
             updatedVisualLessons[i] = lessonStats[i][statDistTemp[2]]
         }
 
+        
+        for (let i = 0; i < 3; i++) {
+            updatedClassroomStats[i] = classStats[statDistTemp[i]]
+        }
+
+        let hajimeStats = false;
+        if (thisPreset.scenario === 0 || thisPreset.scenario === 1) {
+            hajimeStats = true;
+        } else {
+            hajimeStats = false; 
+        }
+
+
+        let newState = presetState(thisPreset, presetIndex, statDistTemp, updatedVocalLessons, updatedDanceLessons, updatedVisualLessons, updatedClassroomStats, hajimeStats);
+
         this.setState(newState, () => {
-            this.props.onChange(newState[newState.currentState], newState.general);
-
-            
-            this.setState(prevState => {
-                // Make shallow copies of arrays to avoid direct mutation
-                            
-
-                return {
-                    general: {
-                        ...prevState.general,
-                        statDist: statDistTemp,
-                        vocalLessons: updatedVocalLessons,
-                        danceLessons: updatedDanceLessons,
-                        visualLessons: updatedVisualLessons,
-                    }
-                };
-            });
+            this.props.onChange(newState[newState.currentState], newState.general);        
+           
         });
     }
 
+/*
     onMasterReset() {
         let newState = defaultMasterState();
         let statDistTemp = this.state.general.statDist
@@ -285,8 +246,6 @@ class Weights extends React.Component {
 
                 for (let i = 0; i < 3; i++) {
                     updatedClassroomStats[i] = classStats[statDistTemp[i]]
-                    console.log("Test")
-                    console.log(statDistTemp[i])
                 }
 
                 for (let i = 0; i < 4; i++) {
@@ -314,7 +273,7 @@ class Weights extends React.Component {
             });
         });
     }
-
+*/
     onStatChange = (event) => {
         const {id, value} = event.target
         const [key, indexStr] = id.split(".");
@@ -322,6 +281,7 @@ class Weights extends React.Component {
         const newValue = parseInt(value, 10);
 
         this.setState(prevState => {
+            
             const updatedArray = [...prevState.general[key]];
             updatedArray[index] = newValue;
 
@@ -332,6 +292,20 @@ class Weights extends React.Component {
                 }
             };
         }, () => {
+        });
+    };
+
+    onPresetChange = (event) => {
+        const { id, value } = event.target
+        const key = id;
+        const newValue = parseInt(value, 10);
+
+        this.setState(prevState => ({
+                general: {
+                    ...prevState.general,
+                    [key]: newValue
+                }     
+        }), () => {
         });
     };
 
@@ -444,10 +418,12 @@ class Weights extends React.Component {
     
     
     render() {
-        console.log("Vocal:")
-        console.log(this.state.general.statDist[0])
+        //console.log('test5')
+        //console.log(this.state.general.preset)
         /*console.log(this.state.general.statDist[1])
         console.log(this.state.general.statDist[2])*/
+        //let processedPresetsAll = processPresets(allPresets)
+
         return (
             <div className="weights">
                 <div className="weight-row">
@@ -471,34 +447,51 @@ class Weights extends React.Component {
                                     <b>Bug: changes do not apply properly until a value in settings is changed</b>
                             </div>
                             <div className="weight-row">
-                                <label htmlFor="stat-select">Vocal: </label>
+                                <label htmlFor="stat-select">Vocal:</label>
                                 <select id="statDist.0" value={this.state.general.statDist[0]} onChange={this.onStatChange}>
                                     <option value={0}>Primary</option>
                                     <option value={1}>Secondary</option>
                                     <option value={2}>Tertiary</option>
                                 </select>
 
-                                <label htmlFor="stat-select">Dance: </label>
+                                <label htmlFor="stat-select">Dance:</label>
                                 <select id="statDist.1" value={this.state.general.statDist[1]} onChange={this.onStatChange}>
                                     <option value={0}>Primary</option>
                                     <option value={1}>Secondary</option>
                                     <option value={2}>Tertiary</option>
                                 </select>
 
-                                <label htmlFor="stat-select">Visual: </label>
-                                <select id="statDist.2" value={this.state.general.statDist[2]} onChange={this.onStatChange}>
-                                    <option value={0}>Primary</option>
-                                    <option value={1}>Secondary</option>
-                                    <option value={2}>Tertiary</option>
-                                </select>
-                            </div>
+                                <label htmlFor="stat-select">Visual:</label>
+                                    <select id="statDist.2" value={this.state.general.statDist[2]} onChange={this.onStatChange}>
+                                        <option value={0}>Primary</option>
+                                        <option value={1}>Secondary</option>
+                                        <option value={2}>Tertiary</option>
+                                    </select>
 
-                            <button id="reset-weights-Pro" type="button" onClick={this.onProReset}>Hajime Pro</button>
-                            <button id="reset-weights-Master" type="button" onClick={this.onMasterReset}>Hajime Master (+45)</button>
-                            <br/>
-                            <button id="reset-weights-NIA" type="button" onClick={this.onNIAReset}>NIA</button>
-                            
+                                    <br />
+                                    <br />
 
+                                <label htmlFor="stat-select">Scenario/Route:</label>
+                                    <select id="preset" value={this.state.general.preset} onChange={this.onPresetChange}>
+                                        <optgroup label="Hajime Pro">
+                                            <option value={0}>General</option>
+                                        </optgroup>
+                                        <optgroup label="Hajime Master">
+                                            <option value={1}>3 Gifts + 3 Shops (+45)</option>
+                                            <option value={2}>2 Gifts + 4 Shops (+45)</option>
+                                        </optgroup>
+                                        <optgroup label="NIA Pro">
+                                            <option value={3}>General Badge Route</option>
+                                        </optgroup>
+                                        <optgroup label="NIA Master">
+                                            <option value={4}>3 Dates + 2 Gifts + 2 Shops (22 cards)</option>
+                                            <option value={5}>3 Gifts + 2 Dates + 2 Shops (22 cards)</option>
+                                            <option value={6}>5 Dates + 1 Rest + 1 Shop (22 cards)</option>
+                                            <option value={7}>4 Gifts + 3 Shops (35 cards)</option>
+                                        </optgroup>
+                                    </select>
+                                    <button id="reset-weights-Pro" type="button" onClick={this.onPreset}>Set</button>
+                            </div>                        
                             
                         </div>
                     </div>
@@ -754,6 +747,8 @@ class Weights extends React.Component {
                             <label for="drink">Replacements</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="replace" value={this.state.general.replace} min={0} max={3} step={1} />
 
+                            <label for="drink">Customisations</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="custom" value={this.state.general.custom} min={0} max={20} step={1} />
                             
                         </div>    
 
@@ -777,5 +772,6 @@ class Weights extends React.Component {
         );
     }
 }
+
 
 export default Weights;

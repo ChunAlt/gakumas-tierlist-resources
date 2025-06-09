@@ -354,6 +354,12 @@ function processCards(cards, weights, selectedCards) {
             statGains += card.replace * weights.replace;
         }
 
+        if (weights.replace > 5) {
+            statGains += card.cust * 6;
+        } else {
+            statGains += card.cust * weights.custom;
+        }
+
         // Convert stat gains to score
         score += statGains;
 

@@ -153,6 +153,12 @@ export const supportCardProperties = {
         shorthand: "/Drink Buy"
     },
 
+    cust: {
+        friendly_name: "Customise Bonus",
+        shorthand: "/Cust"
+    },
+
+
     eb: {
         friendly_name: "Exam Bonus",
         shorthand: "Exam B"
