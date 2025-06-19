@@ -64,7 +64,7 @@ function defaultState() {
         presets: true,
         show: false,
         general: {
-            preset: 5,
+            preset: 4,
             statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
@@ -486,8 +486,9 @@ class Weights extends React.Component {
                                         <optgroup label="NIA Master">
                                             <option value={4}>3 Dates + 2 Gifts + 2 Shops (22 cards)</option>
                                             <option value={5}>3 Gifts + 2 Dates + 2 Shops (22 cards)</option>
-                                            <option value={6}>5 Dates + 1 Rest + 1 Shop (22 cards)</option>
-                                            <option value={7}>4 Gifts + 3 Shops (35 cards)</option>
+                                            <option value={6}>5 Dates + 1 Rest + 1 Shop (M. Upgrades)</option>
+                                            <option value={7}>6 Dates + 1 Shop (M. Upgrades)</option>
+                                            <option value={8}>4 Gifts + 3 Shops (35 cards)</option>
                                         </optgroup>
                                     </select>
                                     <button id="reset-weights-Pro" type="button" onClick={this.onPreset}>Set</button>
@@ -696,7 +697,7 @@ class Weights extends React.Component {
                             <br />
                             <label for="cardAcq.2">Good Shape</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.2" value={this.state.general.cardAcq[2]} min={0} max={50} step={1} />
-                            <label for="cardAcq.3"><b>Concentration</b></label>
+                            <label for="cardAcq.3">Concentration</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.3" value={this.state.general.cardAcq[3]} min={0} max={50} step={1} />
                             <label for="cardAcq.4">Impression</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.4" value={this.state.general.cardAcq[4]} min={0} max={50} step={1} />
