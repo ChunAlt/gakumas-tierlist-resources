@@ -36,7 +36,7 @@ function presetState(selectedPreset, prevPreset, dist, vocal, dance, visual, cla
             replace: selectedPreset.replace,
             drink: [selectedPreset.drink0, selectedPreset.drink1],
             upgrade: [selectedPreset.upgrade0, selectedPreset.upgrade1],
-            cardAcq: [selectedPreset.cardAcq0, selectedPreset.cardAcq1, selectedPreset.cardAcq2, selectedPreset.cardAcq3, selectedPreset.cardAcq4, selectedPreset.cardAcq5, selectedPreset.cardAcq6, selectedPreset.cardAcq7, selectedPreset.cardAcq8],
+            cardAcq: [selectedPreset.cardAcq0, selectedPreset.cardAcq1, selectedPreset.cardAcq2, selectedPreset.cardAcq3, selectedPreset.cardAcq4, selectedPreset.cardAcq5, selectedPreset.cardAcq6, selectedPreset.cardAcq7, selectedPreset.cardAcq8, selectedPreset.cardAcq9, selectedPreset.cardAcq10],
             delete: [selectedPreset.delete0, selectedPreset.delete1],
             custom: selectedPreset.customs,
             hajime: hajimeStats,
@@ -85,7 +85,7 @@ function defaultState() {
             replace: 3,
             drink: [12, 2],
             upgrade: [1, 2],
-            cardAcq: [5, 6, 5, 0, 5, 0, 5, 0, 0],
+            cardAcq: [5, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5],
             delete: [2, 2],
             custom: 4,
             hajime: false,
@@ -691,31 +691,32 @@ class Weights extends React.Component {
                             <label for="cardAcq.0">Active</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.0" value={this.state.general.cardAcq[0]} min={0} max={50} step={1} />
                             <label for="cardAcq.1">Mental</label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.1" value={this.state.general.cardAcq[1]} min={0} max={50} step={1} />
-
-                            
-                            <br />
-                            <label for="cardAcq.2">Good Shape</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.1" value={this.state.general.cardAcq[1]} min={0} max={50} step={1} />           
+                            <label for="cardAcq.2">SSR</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.2" value={this.state.general.cardAcq[2]} min={0} max={50} step={1} />
-                            <label for="cardAcq.3">Concentration</label>
+
+                            <br />
+
+                            <label for="cardAcq.3">Good Shape</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.3" value={this.state.general.cardAcq[3]} min={0} max={50} step={1} />
-                            <label for="cardAcq.4">Impression</label>
+                            <label for="cardAcq.4">Concentration</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.4" value={this.state.general.cardAcq[4]} min={0} max={50} step={1} />
-                            <label for="cardAcq.5"><b>Motivation</b></label>
+                            <label for="cardAcq.5">Impression</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.5" value={this.state.general.cardAcq[5]} min={0} max={50} step={1} />
-
-                            <br />
-                            <label for="cardAcq.6">Preservation</label>
+                            <label for="cardAcq.6">Motivation</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.6" value={this.state.general.cardAcq[6]} min={0} max={50} step={1} />
-                            <label for="cardAcq.7"><b>Strength</b></label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.7" value={this.state.general.cardAcq[7]} min={0} max={50} step={1} />
-                            <label for="cardAcq.8"><b>FP Point</b></label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.8" value={this.state.general.cardAcq[8]} min={0} max={50} step={1} />
 
                             <br />
-                            <div>
-                                <i>(<b>Bold</b> stats currently have no cards that utilise them)</i>
-                            </div>
+                            
+                            <label for="cardAcq.7">Preservation</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.7" value={this.state.general.cardAcq[7]} min={0} max={50} step={1} />
+                            <label for="cardAcq.8">Strength</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.8" value={this.state.general.cardAcq[8]} min={0} max={50} step={1} />
+                            <label for="cardAcq.9">FP Point</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.9" value={this.state.general.cardAcq[9]} min={0} max={50} step={1} />
+                            <label for="cardAcq.10">Energy</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="cardAcq.10" value={this.state.general.cardAcq[10]} min={0} max={50} step={1} />
+                            <br />
                             
                             <div className="section-subheader">
                                 Card Upgrades

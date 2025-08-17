@@ -88,6 +88,11 @@ export const supportCardProperties = {
         shorthand: "/M. Card"
     },
 
+    ssr_cb: {
+        friendly_name: "SSR Acquisition",
+        shorthand: "/SSR Card"
+    },
+
     cond_cb: {
         friendly_name: "Good Shape Acquisition",
         shorthand: "/G.Shape Card"
@@ -121,6 +126,11 @@ export const supportCardProperties = {
     fpp_cb: {
         friendly_name: "FP Point Acquisition",
         shorthand: "/FPP Card"
+    },
+
+    energy_cb: {
+        friendly_name: "Energy Acquisition",
+        shorthand: "/Ener. Card"
     },
 
     delete: {

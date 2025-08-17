@@ -92,13 +92,15 @@ function SelectedCards(props) {
         statGains += card.cb * (props.weights.cardAcq[0] + props.weights.cardAcq[1]);
         statGains += card.a_cb * props.weights.cardAcq[0];
         statGains += card.m_cb * props.weights.cardAcq[1];
-        statGains += card.cond_cb * props.weights.cardAcq[2];
-        statGains += card.conc_cb * props.weights.cardAcq[3];
-        statGains += card.imp_cb * props.weights.cardAcq[4];
-        statGains += card.mot_cb * props.weights.cardAcq[5];
-        statGains += card.pres_cb * props.weights.cardAcq[6];
-        statGains += card.str_cb * props.weights.cardAcq[7];
-        statGains += card.fpp_cb * props.weights.cardAcq[8];
+        statGains += card.ssr_cb * props.weights.cardAcq[2];
+        statGains += card.cond_cb * props.weights.cardAcq[3];
+        statGains += card.conc_cb * props.weights.cardAcq[4];
+        statGains += card.imp_cb * props.weights.cardAcq[5];
+        statGains += card.mot_cb * props.weights.cardAcq[6];
+        statGains += card.pres_cb * props.weights.cardAcq[7];
+        statGains += card.str_cb * props.weights.cardAcq[8];
+        statGains += card.fpp_cb * props.weights.cardAcq[9];
+        statGains += card.energy_cb * props.weights.cardAcq[10];
 
         statGains += card.delete * (props.weights.delete[0] + props.weights.delete[1]);
 

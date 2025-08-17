@@ -322,13 +322,15 @@ function processCards(cards, weights, selectedCards) {
         statGains += card.cb * (weights.cardAcq[0] + weights.cardAcq[1]);
         statGains += card.a_cb * weights.cardAcq[0];
         statGains += card.m_cb * weights.cardAcq[1];
-        statGains += card.cond_cb * weights.cardAcq[2];
-        statGains += card.conc_cb * weights.cardAcq[3];
-        statGains += card.imp_cb * weights.cardAcq[4];
-        statGains += card.mot_cb * weights.cardAcq[5];
-        statGains += card.pres_cb * weights.cardAcq[6];
-        statGains += card.str_cb * weights.cardAcq[7];
-        statGains += card.fpp_cb * weights.cardAcq[8];
+        statGains += card.ssr_cb * weights.cardAcq[2];
+        statGains += card.cond_cb * weights.cardAcq[3];
+        statGains += card.conc_cb * weights.cardAcq[4];
+        statGains += card.imp_cb * weights.cardAcq[5];
+        statGains += card.mot_cb * weights.cardAcq[6];
+        statGains += card.pres_cb * weights.cardAcq[7];
+        statGains += card.str_cb * weights.cardAcq[8];
+        statGains += card.fpp_cb * weights.cardAcq[9];
+        statGains += card.energy_cb * weights.cardAcq[10];
 
         statGains += card.delete * (weights.delete[0] + weights.delete[1]);
 
