@@ -74,11 +74,23 @@ function SelectedCards(props) {
             statGains += card.n_lb * props.weights.visualLessons[3];
         }
 
+        if (props.weights.spBonus20 > 3) {
+            statGains += card.sp_lb20 * 4;
+        } else {
+            statGains += card.sp_lb20 * props.weights.spBonus20;
+        }
+
         statGains += card.rest_b * props.weights.rest;
         statGains += card.gift_b * props.weights.gift;
         statGains += card.date_b * props.weights.date;
         statGains += card.shop_b * props.weights.shop;
         statGains += card.class_b * props.weights.classroom;
+
+        if (props.weights.sGuidance > 2) {
+            statGains += card.s_guidance * 3;
+        } else {
+            statGains += card.s_guidance * props.weights.sGuidance;
+        }
 
         statGains += card.drink_acq * props.weights.drink[0];
         statGains += card.drink_buy * props.weights.drink[1];
@@ -118,6 +130,12 @@ function SelectedCards(props) {
 
         if (props.weights.eventStats === true) {
             statGains += card.event;
+        }
+
+        if (props.weights.itemAcq > 5) {
+            statGains += card.item_acq * 6;
+        } else {
+            statGains += card.item_acq * props.weights.itemAcq;
         }
 
         if (props.weights.replace > 2) {

@@ -29,6 +29,11 @@ export const supportCardProperties = {
         shorthand: "/SP Lesson"
     },
 
+    sp_lb20: {
+        friendly_name: "SP Lesson Bonus (20+ Cards)",
+        shorthand: "/SP Lesson (20)"
+    },
+
     n_lb: {
         friendly_name: "Normal Lesson Bonus",
         shorthand: "/N Lesson"
@@ -56,6 +61,11 @@ export const supportCardProperties = {
     class_b: {
         friendly_name: "Classroom/Business Bonus",
         shorthand: "/Class"
+    },
+
+    s_guidance: {
+        friendly_name: "Special Guidance Bonus",
+        shorthand: "/S. Guidance"
     },
 
     ub: {
@@ -161,6 +171,11 @@ export const supportCardProperties = {
     drink_buy: {
         friendly_name: "P Drink Exchange",
         shorthand: "/Drink Buy"
+    },
+
+    item_acq: {
+        friendly_name: "P Item Acquisition",
+        shorthand: "/Item"
     },
 
     cust: {

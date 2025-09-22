@@ -304,11 +304,23 @@ function processCards(cards, weights, selectedCards) {
             statGains += card.n_lb * weights.visualLessons[3];
         }
 
+        if (weights.spBonus20 > 3) {
+            statGains += card.sp_lb20 * 4;
+        } else {
+            statGains += card.sp_lb20 * weights.spBonus20;
+        }
+
         statGains += card.rest_b * weights.rest;
         statGains += card.gift_b * weights.gift;
         statGains += card.date_b * weights.date;
         statGains += card.shop_b * weights.shop;
         statGains += card.class_b * weights.classroom;
+
+        if (weights.sGuidance > 2) {
+            statGains += card.s_guidance * 3;
+        } else {
+            statGains += card.s_guidance * weights.sGuidance;
+        }
 
         statGains += card.drink_acq * weights.drink[0];
         statGains += card.drink_buy * weights.drink[1];
@@ -348,6 +360,12 @@ function processCards(cards, weights, selectedCards) {
 
         if (weights.eventStats === true) {
             statGains += card.event;
+        }
+
+        if (weights.itemAcq > 5) {
+            statGains += card.item_acq * 6;
+        } else {
+            statGains += card.item_acq * weights.itemAcq;
         }
 
         if (weights.replace > 2) {

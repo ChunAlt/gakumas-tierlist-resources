@@ -26,18 +26,23 @@ function presetState(selectedPreset, prevPreset, dist, vocal, dance, visual, cla
             vocalLessons: vocal,
             danceLessons: dance,
             visualLessons: visual,
+            spBonus20: selectedPreset.sp20,
             spRate: [5, 5, 5],
+
             rest: selectedPreset.rest,
             gift: selectedPreset.gift,
             date: selectedPreset.date,
             shop: selectedPreset.shop,
             classroom: selectedPreset.classroom,
             classroomStats: classStats,
+            sGuidance: selectedPreset.s_guidance,
+
             replace: selectedPreset.replace,
             drink: [selectedPreset.drink0, selectedPreset.drink1],
             upgrade: [selectedPreset.upgrade0, selectedPreset.upgrade1],
             cardAcq: [selectedPreset.cardAcq0, selectedPreset.cardAcq1, selectedPreset.cardAcq2, selectedPreset.cardAcq3, selectedPreset.cardAcq4, selectedPreset.cardAcq5, selectedPreset.cardAcq6, selectedPreset.cardAcq7, selectedPreset.cardAcq8, selectedPreset.cardAcq9, selectedPreset.cardAcq10],
             delete: [selectedPreset.delete0, selectedPreset.delete1],
+            itemAcq: selectedPreset.items,
             custom: selectedPreset.customs,
             hajime: hajimeStats,
             eventStats: false,
@@ -75,6 +80,7 @@ function defaultState() {
             vocalLessons: [800, 4, 4, 0],
             danceLessons: [800, 4, 4, 0],
             visualLessons: [800, 4, 4, 0],
+            spBonus20: 1,
             spRate: [5, 5, 5],
             rest: 0,
             gift: 0,
@@ -82,11 +88,13 @@ function defaultState() {
             shop: 1,
             classroom: 7,
             classroomStats: [80, 80, 80],
+            sGuidance: 3,
             replace: 3,
             drink: [12, 2],
             upgrade: [1, 2],
             cardAcq: [5, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5],
             delete: [2, 2],
+            itemAcq: 5,
             custom: 4,
             hajime: false,
             eventStats: false,
@@ -475,20 +483,22 @@ class Weights extends React.Component {
                                     <select id="preset" value={this.state.general.preset} onChange={this.onPresetChange}>
                                         <optgroup label="Hajime Pro">
                                             <option value={0}>General</option>
+                                            <option value={1}>3 Gifts, 3 Shops</option>
+                                            <option value={2}>Rests</option>
                                         </optgroup>
                                         <optgroup label="Hajime Master">
-                                            <option value={1}>3 Gifts + 3 Shops (+45)</option>
-                                            <option value={2}>2 Gifts + 4 Shops (+45)</option>
+                                            <option value={3}>3 Gifts + 3 Shops (+45)</option>
+                                            <option value={4}>2 Gifts + 4 Shops (+45)</option>
                                         </optgroup>
                                         <optgroup label="NIA Pro">
-                                            <option value={3}>General Badge Route</option>
+                                            <option value={5}>General Badge Route</option>
                                         </optgroup>
                                         <optgroup label="NIA Master">
-                                            <option value={4}>3 Dates + 2 Gifts + 2 Shops (22 cards)</option>
-                                            <option value={5}>3 Gifts + 2 Dates + 2 Shops (22 cards)</option>
-                                            <option value={6}>5 Dates + 1 Rest + 1 Shop (M. Upgrades)</option>
-                                            <option value={7}>6 Dates + 1 Shop (M. Upgrades)</option>
-                                            <option value={8}>4 Gifts + 3 Shops (35 cards)</option>
+                                            <option value={6}>3 Dates + 2 Gifts + 2 Shops (22 cards)</option>
+                                            <option value={7}>3 Gifts + 2 Dates + 2 Shops (22 cards)</option>
+                                            <option value={8}>5 Dates + 1 Rest + 1 Shop (M. Upgrades)</option>
+                                            <option value={9}>6 Dates + 1 Shop (M. Upgrades)</option>
+                                            <option value={10}>4 Gifts + 3 Shops (35 cards)</option>
                                         </optgroup>
                                     </select>
                                     <button id="reset-weights-Pro" type="button" onClick={this.onPreset}>Set</button>
@@ -615,6 +625,12 @@ class Weights extends React.Component {
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="classroom" value={this.state.general.classroom} min={0} max={14} step={1} />
                             <label for="rest">Rest</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="rest" value={this.state.general.rest} min={0} max={14} step={1} />
+
+                            <br />
+
+                            <label for="sGuidance">Special Guidance</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="sGuidance" value={this.state.general.sGuidance} min={0} max={5} step={1} />
+
                         </div>
                         <br />
                         <div className="weight-row">
@@ -677,6 +693,14 @@ class Weights extends React.Component {
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="visualLessons.2" value={this.state.general.visualLessons[2]} min={0} max={20} step={1} />
                             <label for="visualLessons.3">Normal Lessons</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="visualLessons.3" value={this.state.general.visualLessons[3]} min={0} max={20} step={1} />
+
+                            <div className="section-subheader">
+                                Other
+                            </div>
+                            <label for="spBonus20">SP Lessons with 20+ cards in deck</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="spBonus20" value={this.state.general.spBonus20} min={0} max={10} step={1} />
+
+
                         </div>
                         <br />
                         <div className="weight-row">
@@ -746,10 +770,13 @@ class Weights extends React.Component {
                                 Other
                             </div>
 
-                            <label for="drink">Replacements</label>
+                            <label for="itemAcq">P Items</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="itemAcq" value={this.state.general.itemAcq} min={0} max={10} step={1} />
+
+                            <label for="replace">Replacements</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="replace" value={this.state.general.replace} min={0} max={3} step={1} />
 
-                            <label for="drink">Customisations</label>
+                            <label for="custom">Customisations</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="custom" value={this.state.general.custom} min={0} max={20} step={1} />
                             
                         </div>    
