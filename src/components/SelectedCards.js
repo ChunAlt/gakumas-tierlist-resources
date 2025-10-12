@@ -144,7 +144,7 @@ function SelectedCards(props) {
             statGains += card.replace * props.weights.replace;
         }
 
-        if (props.weights.replace > 5) {
+        if (props.weights.custom > 5) {
             statGains += card.cust * 6;
         } else {
             statGains += card.cust * props.weights.custom;
