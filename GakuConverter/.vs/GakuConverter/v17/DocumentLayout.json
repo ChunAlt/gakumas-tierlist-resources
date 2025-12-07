@@ -5,6 +5,15 @@
     {
       "AbsoluteMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|solutionrelative:GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Chun\\gakumas-tierlist\\src\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Chun\\gakumas-tierlist\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\Weights.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,11 +23,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.js",
+              "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\src\\App.js",
+              "RelativeDocumentMoniker": "..\\src\\App.js",
+              "ToolTip": "C:\\Users\\Chun\\gakumas-tierlist\\src\\App.js",
+              "RelativeToolTip": "..\\src\\App.js",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAHMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-07T13:57:13.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\src\\index.js",
+              "RelativeDocumentMoniker": "..\\src\\index.js",
+              "ToolTip": "C:\\Users\\Chun\\gakumas-tierlist\\src\\index.js",
+              "RelativeToolTip": "..\\src\\index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-07T13:57:11.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Weights.js",
+              "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\Weights.js",
+              "RelativeDocumentMoniker": "..\\src\\components\\Weights.js",
+              "ToolTip": "C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\Weights.js",
+              "RelativeToolTip": "..\\src\\components\\Weights.js",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAQwEcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-07T13:56:26.098Z"
             },
             {
               "$type": "Document",
@@ -28,7 +74,7 @@
               "RelativeDocumentMoniker": "GakuConverter.py",
               "ToolTip": "C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py",
               "RelativeToolTip": "GakuConverter.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAB7AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-12-27T21:01:36.922Z",
               "EditorCaption": ""

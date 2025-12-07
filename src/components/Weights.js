@@ -69,7 +69,7 @@ function defaultState() {
         presets: true,
         show: false,
         general: {
-            preset: 4,
+            preset: 5,
             statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
