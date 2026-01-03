@@ -69,33 +69,33 @@ function defaultState() {
         presets: true,
         show: false,
         general: {
-            preset: 12,
+            preset: 5,
             statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
             memStats: [20, 20, 20],
             memMult: [3, 3, 3],
             memPoints: 30,
-            statCap: 2800,
-            vocalLessons: [1210, 3, 3, 0],
-            danceLessons: [1210, 3, 3, 0],
-            visualLessons: [1210, 3, 3, 0],
+            statCap: 2000,
+            vocalLessons: [800, 4, 4, 0],
+            danceLessons: [800, 4, 4, 0],
+            visualLessons: [800, 4, 4, 0],
             spBonus20: 1,
             spRate: [5, 5, 5],
             rest: 0,
-            gift: 4,
-            date: 0,
-            shop: 2,
-            classroom: 5,
-            classroomStats: [0, 0, 0],
-            sGuidance: 1,
-            replace: 1,
-            drink: [22, 12],
+            gift: 0,
+            date: 5,
+            shop: 1,
+            classroom: 7,
+            classroomStats: [80, 80, 80],
+            sGuidance: 3,
+            replace: 3,
+            drink: [12, 2],
             upgrade: [1, 2],
-            cardAcq: [7, 13, 5, 10, 10, 8, 8, 6, 8, 6, 6],
-            delete: [0, 0],
-            itemAcq: 6,
-            custom: 3,
+            cardAcq: [5, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+            delete: [2, 2],
+            itemAcq: 5,
+            custom: 4,
             hajime: false,
             eventStats: false,
         },
@@ -493,16 +493,12 @@ class Weights extends React.Component {
                                         <optgroup label="NIA Pro">
                                             <option value={5}>General Badge Route</option>
                                         </optgroup>
-                                        <optgroup label="NIA Master (Pre-Rework)">
+                                        <optgroup label="NIA Master">
                                             <option value={6}>3 Dates + 2 Gifts + 2 Shops (22 cards)</option>
                                             <option value={7}>3 Gifts + 2 Dates + 2 Shops (22 cards)</option>
                                             <option value={8}>5 Dates + 1 Rest + 1 Shop (M. Upgrades)</option>
                                             <option value={9}>6 Dates + 1 Shop (M. Upgrades)</option>
                                             <option value={10}>4 Gifts + 3 Shops (35 cards)</option>
-                                        </optgroup>
-                                        <optgroup label="Hajime Legend">
-                                            <option value={11}>Bond 20: 3 Gifts, 3 Shops (Drinks Route)</option>
-                                            <option value={12}>Bond 27: 4 Gifts, 2 Shops (Drinks Route)</option>
                                         </optgroup>
                                     </select>
                                     <button id="reset-weights-Pro" type="button" onClick={this.onPreset}>Set</button>

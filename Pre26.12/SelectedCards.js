@@ -95,7 +95,7 @@ function SelectedCards(props) {
         statGains += card.drink_acq * props.weights.drink[0];
         statGains += card.drink_buy * props.weights.drink[1];
 
-        statGains += 2 * card.eb;
+        statGains += card.eb;
 
         statGains += card.ub * props.weights.upgrade.reduce((total, current) => total + current, 0);
         statGains += card.a_ub * props.weights.upgrade[0];

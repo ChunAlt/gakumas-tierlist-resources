@@ -325,7 +325,7 @@ function processCards(cards, weights, selectedCards) {
         statGains += card.drink_acq * weights.drink[0];
         statGains += card.drink_buy * weights.drink[1];
 
-        statGains += 2 * card.eb;
+        statGains += card.eb;
         
         statGains += card.ub * weights.upgrade.reduce((total, current) => total + current, 0);
         statGains += card.a_ub * weights.upgrade[0];
