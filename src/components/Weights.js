@@ -41,7 +41,7 @@ function presetState(selectedPreset, prevPreset, dist, vocal, dance, visual, cla
             drink: [selectedPreset.drink0, selectedPreset.drink1],
             upgrade: [selectedPreset.upgrade0, selectedPreset.upgrade1],
             cardAcq: [selectedPreset.cardAcq0, selectedPreset.cardAcq1, selectedPreset.cardAcq2, selectedPreset.cardAcq3, selectedPreset.cardAcq4, selectedPreset.cardAcq5, selectedPreset.cardAcq6, selectedPreset.cardAcq7, selectedPreset.cardAcq8, selectedPreset.cardAcq9, selectedPreset.cardAcq10],
-            delete: [selectedPreset.delete0, selectedPreset.delete1],
+            delete: [selectedPreset.deleteTot, selectedPreset.delete0, selectedPreset.delete1],
             itemAcq: selectedPreset.items,
             custom: selectedPreset.customs,
             hajime: hajimeStats,
@@ -69,33 +69,33 @@ function defaultState() {
         presets: true,
         show: false,
         general: {
-            preset: 12,
+            preset: 13,
             statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
             memStats: [20, 20, 20],
             memMult: [3, 3, 3],
             memPoints: 30,
-            statCap: 2800,
-            vocalLessons: [1210, 3, 3, 0],
-            danceLessons: [1210, 3, 3, 0],
-            visualLessons: [1210, 3, 3, 0],
-            spBonus20: 3,
+            statCap: 3200,
+            vocalLessons: [1460, 2, 2, 0],
+            danceLessons: [1090, 6, 6, 0],
+            visualLessons: [1460, 2, 2, 0],
+            spBonus20: 0,
             spRate: [5, 5, 5],
             rest: 0,
-            gift: 4,
-            date: 0,
-            shop: 2,
-            classroom: 4,
-            classroomStats: [0, 0, 0],
+            gift: 5,
+            date: 1,
+            shop: 3,
+            classroom: 6,
+            classroomStats: [120, 0, 560],
             sGuidance: 1,
-            replace: 1,
-            drink: [22, 12],
+            replace: 5,
+            drink: [40, 16],
             upgrade: [1, 2],
-            cardAcq: [7, 13, 5, 10, 10, 8, 8, 6, 8, 6, 6],
-            delete: [0, 0],
+            cardAcq: [7, 12, 5, 7, 7, 10, 10, 12, 7, 12, 12],
+            delete: [5, 2, 2],
             itemAcq: 6,
-            custom: 3,
+            custom: 6,
             hajime: false,
             eventStats: false,
         },
@@ -504,6 +504,10 @@ class Weights extends React.Component {
                                             <option value={11}>Bond 20: 3 Gifts, 3 Shops (Drinks Route)</option>
                                             <option value={12}>Bond 27: 4 Gifts, 2 Shops (Drinks Route)</option>
                                         </optgroup>
+                                        <optgroup label="HIF (Tentative)">
+                                            <option value={13}>5 Gifts, 1 Date (Drinks Route)</option>
+                                            <option value={14}>4 Gifts, 2 Date (Drinks Route)</option>
+                                        </optgroup>
                                     </select>
                                     <button id="reset-weights-Pro" type="button" onClick={this.onPreset}>Set</button>
                             </div>                        
@@ -757,10 +761,12 @@ class Weights extends React.Component {
                             <div className="section-subheader">
                                 Card Deletes
                             </div>
-                            <label for="delete[0]">Active</label>
+                            <label for="delete[0]">Total</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="delete.0" value={this.state.general.delete[0]} min={0} max={50} step={1} />
-                            <label for="delete[1]">Mental</label>
+                            <label for="delete[1]">Active</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="delete.1" value={this.state.general.delete[1]} min={0} max={50} step={1} />
+                            <label for="delete[2]">Mental</label>
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="delete.2" value={this.state.general.delete[2]} min={0} max={50} step={1} />
 
                             <div className="section-subheader">
                                 P Drinks

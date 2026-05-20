@@ -83,6 +83,13 @@ function SelectedCards(props) {
         statGains += card.rest_b * props.weights.rest;
         statGains += card.gift_b * props.weights.gift;
         statGains += card.date_b * props.weights.date;
+
+        if (props.weights.date > 1) {
+            statGains += card.date_b2 * 2;
+        } else {
+            statGains += card.date_b2 * props.weights.date;
+        }
+
         statGains += card.shop_b * props.weights.shop;
         statGains += card.class_b * props.weights.classroom;
 
@@ -114,18 +121,18 @@ function SelectedCards(props) {
         statGains += card.fpp_cb * props.weights.cardAcq[9];
         statGains += card.energy_cb * props.weights.cardAcq[10];
 
-        statGains += card.delete * (props.weights.delete[0] + props.weights.delete[1]);
-
-        if (props.weights.delete[0] > 2) {
-            statGains += card.a_delete * 3;
-        } else {
-            statGains += card.a_delete * props.weights.delete[0];
-        }
+        statGains += card.delete * props.weights.delete[0];
 
         if (props.weights.delete[1] > 2) {
+            statGains += card.a_delete * 3;
+        } else {
+            statGains += card.a_delete * props.weights.delete[1];
+        }
+
+        if (props.weights.delete[2] > 2) {
             statGains += card.m_delete * 3;
         } else {
-            statGains += card.m_delete * props.weights.delete[1];
+            statGains += card.m_delete * props.weights.delete[2];
         }
 
         if (props.weights.eventStats === true) {

@@ -313,6 +313,13 @@ function processCards(cards, weights, selectedCards) {
         statGains += card.rest_b * weights.rest;
         statGains += card.gift_b * weights.gift;
         statGains += card.date_b * weights.date;
+
+        if (weights.date > 1) {
+            statGains += card.date_b2 * 2;
+        } else {
+            statGains += card.date_b2 * weights.date;
+        }
+
         statGains += card.shop_b * weights.shop;
         statGains += card.class_b * weights.classroom;
 
@@ -344,18 +351,18 @@ function processCards(cards, weights, selectedCards) {
         statGains += card.fpp_cb * weights.cardAcq[9];
         statGains += card.energy_cb * weights.cardAcq[10];
 
-        statGains += card.delete * (weights.delete[0] + weights.delete[1]);
+        statGains += card.delete * weights.delete[0];
 
-        if (weights.delete[0] > 2) {
+        if (weights.delete[1] > 2) {
             statGains += card.a_delete * 3;
         } else {
-            statGains += card.a_delete * weights.delete[0];
+            statGains += card.a_delete * weights.delete[1];
         }
         
-        if (weights.delete[1] > 2) {
+        if (weights.delete[2] > 2) {
             statGains += card.m_delete * 3;
         } else {
-            statGains += card.m_delete * weights.delete[1];
+            statGains += card.m_delete * weights.delete[2];
         }
 
         if (weights.eventStats === true) {
