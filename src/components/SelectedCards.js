@@ -42,123 +42,159 @@ function SelectedCards(props) {
         let score = 0;
         let statGains = card.start_b;
 
-        if (card.type === 0) {
-            statGains += card.pb * props.weights.vocalLessons[0];
-        } else if (card.type === 1) {
-            statGains += card.pb * props.weights.danceLessons[0];
-        } else {
-            statGains += card.pb * props.weights.visualLessons[0];
+        if (card.id === 30100) {
+            if (props.weights.gift > 1) {
+                statGains += card.gift_b2 * 2;
+            } else {
+                statGains += card.gift_b2 * props.weights.gift;
+            }
+
+            if (props.weights.date > 1) {
+                statGains += card.date_b2 * 2;
+            } else {
+                statGains += card.date_b2 * props.weights.date;
+            }
+
+            if (props.weights.shop > 1) {
+                statGains += card.shop_b2 * 2;
+            } else {
+                statGains += card.shop_b2 * props.weights.shop;
+            }
         }
 
-        if (card.type === 0) {
-            statGains += card.lb * props.weights.vocalLessons[1];
-        } else if (card.type === 1) {
-            statGains += card.lb * props.weights.danceLessons[1];
-        } else {
-            statGains += card.lb * props.weights.visualLessons[1];
+        else {
+
+            if (card.type === 0) {
+                statGains += card.pb * props.weights.vocalLessons[0];
+            } else if (card.type === 1) {
+                statGains += card.pb * props.weights.danceLessons[0];
+            } else {
+                statGains += card.pb * props.weights.visualLessons[0];
+            }
+
+            if (card.type === 0) {
+                statGains += card.lb * props.weights.vocalLessons[1];
+            } else if (card.type === 1) {
+                statGains += card.lb * props.weights.danceLessons[1];
+            } else {
+                statGains += card.lb * props.weights.visualLessons[1];
+            }
+
+            if (card.type === 0) {
+                statGains += card.sp_lb * props.weights.vocalLessons[2];
+            } else if (card.type === 1) {
+                statGains += card.sp_lb * props.weights.danceLessons[2];
+            } else {
+                statGains += card.sp_lb * props.weights.visualLessons[2];
+            }
+
+            if (card.type === 0) {
+                statGains += card.n_lb * props.weights.vocalLessons[3];
+            } else if (card.type === 1) {
+                statGains += card.n_lb * props.weights.danceLessons[3];
+            } else {
+                statGains += card.n_lb * props.weights.visualLessons[3];
+            }
+
+            if (props.weights.spBonus20 > 3) {
+                statGains += card.sp_lb20 * 4;
+            } else {
+                statGains += card.sp_lb20 * props.weights.spBonus20;
+            }
+
+            statGains += card.rest_b * props.weights.rest;
+            statGains += card.gift_b * props.weights.gift;
+
+            if (props.weights.gift > 1) {
+                statGains += card.gift_b2 * 2;
+            } else {
+                statGains += card.gift_b2 * props.weights.gift;
+            }
+
+            statGains += card.date_b * props.weights.date;
+
+            if (props.weights.date > 1) {
+                statGains += card.date_b2 * 2;
+            } else {
+                statGains += card.date_b2 * props.weights.date;
+            }
+
+            statGains += card.shop_b * props.weights.shop;
+
+            if (props.weights.shop > 1) {
+                statGains += card.shop_b2 * 2;
+            } else {
+                statGains += card.shop_b2 * props.weights.shop;
+            }
+
+            statGains += card.class_b * props.weights.classroom;
+
+            if (props.weights.sGuidance > 2) {
+                statGains += card.s_guidance * 3;
+            } else {
+                statGains += card.s_guidance * props.weights.sGuidance;
+            }
+
+            statGains += card.drink_acq * props.weights.drink[0];
+            statGains += card.drink_buy * props.weights.drink[1];
+
+            statGains += 2 * card.eb;
+
+            statGains += card.ub * props.weights.upgrade.reduce((total, current) => total + current, 0);
+            statGains += card.a_ub * props.weights.upgrade[0];
+            statGains += card.m_ub * props.weights.upgrade[1];
+
+            statGains += card.cb * (props.weights.cardAcq[0] + props.weights.cardAcq[1]);
+            statGains += card.a_cb * props.weights.cardAcq[0];
+            statGains += card.m_cb * props.weights.cardAcq[1];
+            statGains += card.ssr_cb * props.weights.cardAcq[2];
+            statGains += card.cond_cb * props.weights.cardAcq[3];
+            statGains += card.conc_cb * props.weights.cardAcq[4];
+            statGains += card.imp_cb * props.weights.cardAcq[5];
+            statGains += card.mot_cb * props.weights.cardAcq[6];
+            statGains += card.pres_cb * props.weights.cardAcq[7];
+            statGains += card.str_cb * props.weights.cardAcq[8];
+            statGains += card.fpp_cb * props.weights.cardAcq[9];
+            statGains += card.energy_cb * props.weights.cardAcq[10];
+
+            statGains += card.delete * props.weights.delete[0];
+
+            if (props.weights.delete[1] > 2) {
+                statGains += card.a_delete * 3;
+            } else {
+                statGains += card.a_delete * props.weights.delete[1];
+            }
+
+            if (props.weights.delete[2] > 2) {
+                statGains += card.m_delete * 3;
+            } else {
+                statGains += card.m_delete * props.weights.delete[2];
+            }
+
+            if (props.weights.eventStats === true) {
+                statGains += card.event;
+            }
+
+            if (props.weights.itemAcq > 5) {
+                statGains += card.item_acq * 6;
+            } else {
+                statGains += card.item_acq * props.weights.itemAcq;
+            }
+
+            if (props.weights.replace > 2) {
+                statGains += card.replace * 3;
+            } else {
+                statGains += card.replace * props.weights.replace;
+            }
+
+            if (props.weights.custom > 5) {
+                statGains += card.cust * 6;
+            } else {
+                statGains += card.cust * props.weights.custom;
+            }
         }
-
-        if (card.type === 0) {
-            statGains += card.sp_lb * props.weights.vocalLessons[2];
-        } else if (card.type === 1) {
-            statGains += card.sp_lb * props.weights.danceLessons[2];
-        } else {
-            statGains += card.sp_lb * props.weights.visualLessons[2];
-        }
-
-        if (card.type === 0) {
-            statGains += card.n_lb * props.weights.vocalLessons[3];
-        } else if (card.type === 1) {
-            statGains += card.n_lb * props.weights.danceLessons[3];
-        } else {
-            statGains += card.n_lb * props.weights.visualLessons[3];
-        }
-
-        if (props.weights.spBonus20 > 3) {
-            statGains += card.sp_lb20 * 4;
-        } else {
-            statGains += card.sp_lb20 * props.weights.spBonus20;
-        }
-
-        statGains += card.rest_b * props.weights.rest;
-        statGains += card.gift_b * props.weights.gift;
-        statGains += card.date_b * props.weights.date;
-
-        if (props.weights.date > 1) {
-            statGains += card.date_b2 * 2;
-        } else {
-            statGains += card.date_b2 * props.weights.date;
-        }
-
-        statGains += card.shop_b * props.weights.shop;
-        statGains += card.class_b * props.weights.classroom;
-
-        if (props.weights.sGuidance > 2) {
-            statGains += card.s_guidance * 3;
-        } else {
-            statGains += card.s_guidance * props.weights.sGuidance;
-        }
-
-        statGains += card.drink_acq * props.weights.drink[0];
-        statGains += card.drink_buy * props.weights.drink[1];
-
-        statGains += 2 * card.eb;
-
-        statGains += card.ub * props.weights.upgrade.reduce((total, current) => total + current, 0);
-        statGains += card.a_ub * props.weights.upgrade[0];
-        statGains += card.m_ub * props.weights.upgrade[1];
-
-        statGains += card.cb * (props.weights.cardAcq[0] + props.weights.cardAcq[1]);
-        statGains += card.a_cb * props.weights.cardAcq[0];
-        statGains += card.m_cb * props.weights.cardAcq[1];
-        statGains += card.ssr_cb * props.weights.cardAcq[2];
-        statGains += card.cond_cb * props.weights.cardAcq[3];
-        statGains += card.conc_cb * props.weights.cardAcq[4];
-        statGains += card.imp_cb * props.weights.cardAcq[5];
-        statGains += card.mot_cb * props.weights.cardAcq[6];
-        statGains += card.pres_cb * props.weights.cardAcq[7];
-        statGains += card.str_cb * props.weights.cardAcq[8];
-        statGains += card.fpp_cb * props.weights.cardAcq[9];
-        statGains += card.energy_cb * props.weights.cardAcq[10];
-
-        statGains += card.delete * props.weights.delete[0];
-
-        if (props.weights.delete[1] > 2) {
-            statGains += card.a_delete * 3;
-        } else {
-            statGains += card.a_delete * props.weights.delete[1];
-        }
-
-        if (props.weights.delete[2] > 2) {
-            statGains += card.m_delete * 3;
-        } else {
-            statGains += card.m_delete * props.weights.delete[2];
-        }
-
-        if (props.weights.eventStats === true) {
-            statGains += card.event;
-        }
-
-        if (props.weights.itemAcq > 5) {
-            statGains += card.item_acq * 6;
-        } else {
-            statGains += card.item_acq * props.weights.itemAcq;
-        }
-
-        if (props.weights.replace > 2) {
-            statGains += card.replace * 3;
-        } else {
-            statGains += card.replace * props.weights.replace;
-        }
-
-        if (props.weights.custom > 5) {
-            statGains += card.cust * 6;
-        } else {
-            statGains += card.cust * props.weights.custom;
-        }
-
         eventMax += card.event;
-
+        
         // Convert stat gains to score
         score += Math.round(statGains);
 
@@ -307,8 +343,8 @@ function SelectedCards(props) {
             <br />
             {signatures}
             <div>
-                Master - SP Rate: <b>{spRateMaster[0]}%</b>/<b>{spRateMaster[1]}%</b>/<b>{spRateMaster[2]}%</b> - Probability at least 1 SP each week: <b>{spRateMasterRound.toFixed(2)}%</b><br />
-                NIA - SP Rate: <b>{spRateNIA[0]}%</b>/<b>{spRateNIA[1]}%</b>/<b>{spRateNIA[2]}%</b> - Probability at least 1 SP each week: <b>{spRateNIARound.toFixed(2)}%</b><br />
+                Original Hajime - SP Rate: <b>{spRateMaster[0]}%</b>/<b>{spRateMaster[1]}%</b>/<b>{spRateMaster[2]}%</b> - Probability at least 1 SP each week: <b>{spRateMasterRound.toFixed(2)}%</b><br />
+                NIA and Beyond - SP Rate: <b>{spRateNIA[0]}%</b>/<b>{spRateNIA[1]}%</b>/<b>{spRateNIA[2]}%</b> - Probability at least 1 SP each week: <b>{spRateNIARound.toFixed(2)}%</b><br />
                 <i>(Base rates can be set to negative to find the probability of runs with, e.g., only Primary/Secondary SP Lessons)</i><br />
                 Average gain per stat event: <b>{eventAverage}</b><br />
                 Starting P Points: <b>{pPoints}</b>

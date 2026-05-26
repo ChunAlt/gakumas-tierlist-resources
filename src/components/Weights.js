@@ -796,11 +796,13 @@ class Weights extends React.Component {
                             <label for="eventStats">Include event stats?</label>
                         </div>
 
+
+                        {/* 
                         <div className="weight-row">
                         <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state.general.hajime} id="hajime" />
                             <label for="hajime">Hajime?</label>
                         </div>
-                            
+                        */}
 
 
 

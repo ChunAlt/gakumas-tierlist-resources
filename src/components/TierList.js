@@ -272,121 +272,157 @@ function processCards(cards, weights, selectedCards) {
         info.spRate = card.sp_r;
         info.spp = card.spp;
 
-        if (card.type === 0) {
-            statGains += card.pb * weights.vocalLessons[0];
-        } else if (card.type === 1) {
-            statGains += card.pb * weights.danceLessons[0];
-        } else {
-            statGains += card.pb * weights.visualLessons[0];
+        if (card.id === 30100) {
+            if (weights.gift > 1) {
+                statGains += card.gift_b2 * 2;
+            } else {
+                statGains += card.gift_b2 * weights.gift;
+            }
+
+            if (weights.date > 1) {
+                statGains += card.date_b2 * 2;
+            } else {
+                statGains += card.date_b2 * weights.date;
+            }
+
+            if (weights.shop > 1) {
+                statGains += card.shop_b2 * 2;
+            } else {
+                statGains += card.shop_b2 * weights.shop;
+            }
         }
 
-        if (card.type === 0) {
-            statGains += card.lb * weights.vocalLessons[1];
-        } else if (card.type === 1) {
-            statGains += card.lb * weights.danceLessons[1];
-        } else {
-            statGains += card.lb * weights.visualLessons[1];
+        else {
+
+            if (card.type === 0) {
+                statGains += card.pb * weights.vocalLessons[0];
+            } else if (card.type === 1) {
+                statGains += card.pb * weights.danceLessons[0];
+            } else {
+                statGains += card.pb * weights.visualLessons[0];
+            }
+
+            if (card.type === 0) {
+                statGains += card.lb * weights.vocalLessons[1];
+            } else if (card.type === 1) {
+                statGains += card.lb * weights.danceLessons[1];
+            } else {
+                statGains += card.lb * weights.visualLessons[1];
+            }
+
+            if (card.type === 0) {
+                statGains += card.sp_lb * weights.vocalLessons[2];
+            } else if (card.type === 1) {
+                statGains += card.sp_lb * weights.danceLessons[2];
+            } else {
+                statGains += card.sp_lb * weights.visualLessons[2];
+            }
+
+            if (card.type === 0) {
+                statGains += card.n_lb * weights.vocalLessons[3];
+            } else if (card.type === 1) {
+                statGains += card.n_lb * weights.danceLessons[3];
+            } else {
+                statGains += card.n_lb * weights.visualLessons[3];
+            }
+
+            if (weights.spBonus20 > 3) {
+                statGains += card.sp_lb20 * 4;
+            } else {
+                statGains += card.sp_lb20 * weights.spBonus20;
+            }
+
+            statGains += card.rest_b * weights.rest;
+            statGains += card.gift_b * weights.gift;
+
+            if (weights.gift > 1) {
+                statGains += card.gift_b2 * 2;
+            } else {
+                statGains += card.gift_b2 * weights.gift;
+            }
+
+            statGains += card.date_b * weights.date;
+
+            if (weights.date > 1) {
+                statGains += card.date_b2 * 2;
+            } else {
+                statGains += card.date_b2 * weights.date;
+            }
+
+            statGains += card.shop_b * weights.shop;
+
+            if (weights.shop > 1) {
+                statGains += card.shop_b2 * 2;
+            } else {
+                statGains += card.shop_b2 * weights.shop;
+            }
+
+            statGains += card.class_b * weights.classroom;
+
+            if (weights.sGuidance > 2) {
+                statGains += card.s_guidance * 3;
+            } else {
+                statGains += card.s_guidance * weights.sGuidance;
+            }
+
+            statGains += card.drink_acq * weights.drink[0];
+            statGains += card.drink_buy * weights.drink[1];
+
+            statGains += 2 * card.eb;
+
+            statGains += card.ub * weights.upgrade.reduce((total, current) => total + current, 0);
+            statGains += card.a_ub * weights.upgrade[0];
+            statGains += card.m_ub * weights.upgrade[1];
+
+            statGains += card.cb * (weights.cardAcq[0] + weights.cardAcq[1]);
+            statGains += card.a_cb * weights.cardAcq[0];
+            statGains += card.m_cb * weights.cardAcq[1];
+            statGains += card.ssr_cb * weights.cardAcq[2];
+            statGains += card.cond_cb * weights.cardAcq[3];
+            statGains += card.conc_cb * weights.cardAcq[4];
+            statGains += card.imp_cb * weights.cardAcq[5];
+            statGains += card.mot_cb * weights.cardAcq[6];
+            statGains += card.pres_cb * weights.cardAcq[7];
+            statGains += card.str_cb * weights.cardAcq[8];
+            statGains += card.fpp_cb * weights.cardAcq[9];
+            statGains += card.energy_cb * weights.cardAcq[10];
+
+            statGains += card.delete * weights.delete[0];
+
+            if (weights.delete[1] > 2) {
+                statGains += card.a_delete * 3;
+            } else {
+                statGains += card.a_delete * weights.delete[1];
+            }
+
+            if (weights.delete[2] > 2) {
+                statGains += card.m_delete * 3;
+            } else {
+                statGains += card.m_delete * weights.delete[2];
+            }
+
+            if (weights.eventStats === true) {
+                statGains += card.event;
+            }
+
+            if (weights.itemAcq > 5) {
+                statGains += card.item_acq * 6;
+            } else {
+                statGains += card.item_acq * weights.itemAcq;
+            }
+
+            if (weights.replace > 2) {
+                statGains += card.replace * 3;
+            } else {
+                statGains += card.replace * weights.replace;
+            }
+
+            if (weights.custom > 5) {
+                statGains += card.cust * 6;
+            } else {
+                statGains += card.cust * weights.custom;
+            }
         }
-
-        if (card.type === 0) {
-            statGains += card.sp_lb * weights.vocalLessons[2];
-        } else if (card.type === 1) {
-            statGains += card.sp_lb * weights.danceLessons[2];
-        } else {
-            statGains += card.sp_lb * weights.visualLessons[2];
-        }
-
-        if (card.type === 0) {
-            statGains += card.n_lb * weights.vocalLessons[3];
-        } else if (card.type === 1) {
-            statGains += card.n_lb * weights.danceLessons[3];
-        } else {
-            statGains += card.n_lb * weights.visualLessons[3];
-        }
-
-        if (weights.spBonus20 > 3) {
-            statGains += card.sp_lb20 * 4;
-        } else {
-            statGains += card.sp_lb20 * weights.spBonus20;
-        }
-
-        statGains += card.rest_b * weights.rest;
-        statGains += card.gift_b * weights.gift;
-        statGains += card.date_b * weights.date;
-
-        if (weights.date > 1) {
-            statGains += card.date_b2 * 2;
-        } else {
-            statGains += card.date_b2 * weights.date;
-        }
-
-        statGains += card.shop_b * weights.shop;
-        statGains += card.class_b * weights.classroom;
-
-        if (weights.sGuidance > 2) {
-            statGains += card.s_guidance * 3;
-        } else {
-            statGains += card.s_guidance * weights.sGuidance;
-        }
-
-        statGains += card.drink_acq * weights.drink[0];
-        statGains += card.drink_buy * weights.drink[1];
-
-        statGains += 2 * card.eb;
-        
-        statGains += card.ub * weights.upgrade.reduce((total, current) => total + current, 0);
-        statGains += card.a_ub * weights.upgrade[0];
-        statGains += card.m_ub * weights.upgrade[1];
-
-        statGains += card.cb * (weights.cardAcq[0] + weights.cardAcq[1]);
-        statGains += card.a_cb * weights.cardAcq[0];
-        statGains += card.m_cb * weights.cardAcq[1];
-        statGains += card.ssr_cb * weights.cardAcq[2];
-        statGains += card.cond_cb * weights.cardAcq[3];
-        statGains += card.conc_cb * weights.cardAcq[4];
-        statGains += card.imp_cb * weights.cardAcq[5];
-        statGains += card.mot_cb * weights.cardAcq[6];
-        statGains += card.pres_cb * weights.cardAcq[7];
-        statGains += card.str_cb * weights.cardAcq[8];
-        statGains += card.fpp_cb * weights.cardAcq[9];
-        statGains += card.energy_cb * weights.cardAcq[10];
-
-        statGains += card.delete * weights.delete[0];
-
-        if (weights.delete[1] > 2) {
-            statGains += card.a_delete * 3;
-        } else {
-            statGains += card.a_delete * weights.delete[1];
-        }
-        
-        if (weights.delete[2] > 2) {
-            statGains += card.m_delete * 3;
-        } else {
-            statGains += card.m_delete * weights.delete[2];
-        }
-
-        if (weights.eventStats === true) {
-            statGains += card.event;
-        }
-
-        if (weights.itemAcq > 5) {
-            statGains += card.item_acq * 6;
-        } else {
-            statGains += card.item_acq * weights.itemAcq;
-        }
-
-        if (weights.replace > 2) {
-            statGains += card.replace * 3;
-        } else {
-            statGains += card.replace * weights.replace;
-        }
-
-        if (weights.custom > 5) {
-            statGains += card.cust * 6;
-        } else {
-            statGains += card.cust * weights.custom;
-        }
-
         // Convert stat gains to score
         score += statGains;
 
@@ -428,20 +464,45 @@ function processScores(processedCards, weights, selectedCards) {
 
         spRate += matchingCards.info.spRate;
 
+        if (cardID === 30100) {
+            if (cardLB >= 1) {
+                cardBonus[0] += 28;
+                cardBonus[1] += 28;
+                cardBonus[2] += 28;
+            } else if (cardLB === 2) {
+                cardBonus[0] += 28;
+                cardBonus[1] += 28;
+                cardBonus[2] += 38;
+            } else if (cardLB === 3) {
+                cardBonus[0] += 38;
+                cardBonus[1] += 28;
+                cardBonus[2] += 38;
+            } else {
+                cardBonus[0] += 38;
+                cardBonus[1] += 38;
+                cardBonus[2] += 38;
+            }
+        }
         cardBonus[type] += matchingCards.score;
 
         cardStartBonus[type] += matchingCards.info.start_b;
         cardMultBonus[type] += matchingCards.info.pb * weights.vocalLessons[0];
     }
 
+    /*
+
     let examBonus = 0;
     if (weights.hajime === true) {
         examBonus += 50;
     }
-    
+
+    */
+
     let lessonGain = [(1 + (idolMemMult[0] / 100)) * weights.vocalLessons[0], (1 + (idolMemMult[1] / 100)) * weights.danceLessons[0], (1 + (idolMemMult[2] / 100)) * weights.visualLessons[0]]
     
-    let finalScore = startingStats.map((stat, index) => stat + cardBonus[index] + lessonGain[index] + weights.classroomStats[index] + examBonus - cardStartBonus[index] - cardMultBonus[index]);
+    /*let finalScore = startingStats.map((stat, index) => stat + cardBonus[index] + lessonGain[index] + weights.classroomStats[index] + examBonus - cardStartBonus[index] - cardMultBonus[index]);*/
+    let finalScore = startingStats.map((stat, index) => stat + cardBonus[index] + lessonGain[index] + weights.classroomStats[index] - cardStartBonus[index] - cardMultBonus[index]);
+
     let roundedScore = Object.fromEntries(
         Object.entries(finalScore).map(([key, value]) => [key, Math.min(value, weights.statCap)])
     );
