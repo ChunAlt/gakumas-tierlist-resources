@@ -4,6 +4,10 @@ import VoiceIcon from '../icons/utx_ico_obtain_00.png';
 import DanceIcon from '../icons/utx_ico_obtain_01.png';
 import VisualIcon from '../icons/utx_ico_obtain_02.png';
 import AssistIcon from '../icons/utx_ico_obtain_03.png';
+import FreeIcon from '../icons/utx_ico_obtain_10.png';
+import SenseIcon from '../icons/utx_ico_obtain_11.png';
+import LogicIcon from '../icons/utx_ico_obtain_12.png';
+import AnomIcon from '../icons/utx_ico_obtain_13.png';
 import allPresets from '../presets';
 import { lsTest } from '../utils';
 
@@ -13,7 +17,8 @@ function presetState(selectedPreset, prevPreset, dist, vocal, dance, visual, cla
         currentState: "voice",
         presets:true,
         show: false,
-        general: {            
+        general: {     
+            plan: 1,
             preset: prevPreset,
             statDist: dist,
             idolStats: [80, 80, 80],
@@ -69,6 +74,7 @@ function defaultState() {
         presets: true,
         show: false,
         general: {
+            plan: 1,
             preset: 13,
             statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
@@ -87,10 +93,10 @@ function defaultState() {
             date: 1,
             shop: 3,
             classroom: 6,
-            classroomStats: [120, 0, 560],
+            classroomStats: [120, 0, 780],
             sGuidance: 1,
             replace: 5,
-            drink: [40, 16],
+            drink: [36, 10],
             upgrade: [1, 2],
             cardAcq: [7, 12, 5, 7, 7, 10, 10, 12, 7, 12, 12],
             delete: [5, 2, 2],
@@ -121,6 +127,7 @@ class Weights extends React.Component {
         this.onSettingChanged = this.onSettingChanged.bind(this);
         this.onGeneralSettingChanged = this.onGeneralSettingChanged.bind(this);
         this.onTypeChanged = this.onTypeChanged.bind(this);
+        this.onPlanChanged = this.onPlanChanged.bind(this);
         this.onCapChanged = this.onCapChanged.bind(this);
         this.onMinimumChanged = this.onMinimumChanged.bind(this);
         this.onTogglePresets = this.onTogglePresets.bind(this);
@@ -382,6 +389,18 @@ class Weights extends React.Component {
 
         this.props.onChange(this.state[event.target.id], this.state.general);
     }
+
+    onPlanChanged(event) {
+        const plan = Number(event)
+        this.setState(prevState => ({
+            general: {
+                ...prevState.general,
+                plan: plan
+            }
+        }), () => {
+            this.props.onChange(this.state[this.state.currentState], this.state.general);
+        });
+    }
     
     onCapChanged(event) {
         let settings = this.state[this.state.currentState];
@@ -426,7 +445,9 @@ class Weights extends React.Component {
     
     
     render() {
-        //console.log('test5')
+        //console.log("weights")
+        //console.log(this.state.general.plan)
+        //console.log(this.state.currentState.type)
         //console.log(this.state.general.preset)
         /*console.log(this.state.general.statDist[1])
         console.log(this.state.general.statDist[2])*/
@@ -434,13 +455,8 @@ class Weights extends React.Component {
 
         return (
             <div className="weights">
-                <div className="weight-row">
-                    <input id="voice" type="image" className={this.state.currentState == "voice" ? "image-btn selected" : "image-btn"} src={VoiceIcon} onClick={this.onTypeChanged} alt="Voice" />
-                    <input id="dance" type="image" className={this.state.currentState == "dance" ? "image-btn selected" : "image-btn"} src={DanceIcon} onClick={this.onTypeChanged} alt="Dance" />
-                    <input id="visual" type="image" className={this.state.currentState == "visual" ? "image-btn selected" : "image-btn"} src={VisualIcon} onClick={this.onTypeChanged} alt="Visual" />
-                    <input id="assist" type="image" className={this.state.currentState == "assist" ? "image-btn selected" : "image-btn"} src={AssistIcon} onClick={this.onTypeChanged} alt="Assist" />
-                </div>
-
+                
+                <br />
                 <div>
                     <button id="presets-toggle" type="button" onClick={this.onTogglePresets}>{this.state.presets ? "Hide Presets" : "Show Presets"}</button>
                 </div>
@@ -517,7 +533,6 @@ class Weights extends React.Component {
                 }
 
 
-                <br />
                 <div className="weight-row">
                     <button id="weights-toggle" type="button" onClick={this.onToggleWeights}>{this.state.show ? "Hide Settings" : "Customise Settings"}</button>
                 </div>
@@ -527,7 +542,7 @@ class Weights extends React.Component {
                         <div className="section-header">
                             Stat Cap
                             <label for="statCap"></label>
-                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="statCap" value={this.state.general.statCap} min={0} max={3000} step={100} />
+                            <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="statCap" value={this.state.general.statCap} min={0} max={10000} step={100} />
                         </div>
                         
 
@@ -603,7 +618,7 @@ class Weights extends React.Component {
                             <div className="section-explanation">
                                 Your idol's base rate for SP Lessons <br />
                                 (i.e. <b>0%</b> at Training Lvl 0-1, <b>5%</b> at Training Lvl 2-5, <b>10%</b> at Training Lvl 6)<br />
-                                (Seasonal Lim. P-idols get <b>+15%</b> to their main stat at LB1)<br />
+                                (Seasonal Lim. P-Idols get <b>+15%</b> to their main stat at LB1)<br />
                                 (FES Lim P-idols get <b>15%</b> SP Rate at Training 6 instead of <b>10%</b>)
                             </div>
                             <label for="spRate.0">Voice</label>
@@ -617,10 +632,6 @@ class Weights extends React.Component {
                         <div className="weight-row">
                             <div className="section-header">
                                 Routing
-                            </div>
-                            <div className="section-explanation">
-                                Standard Master and NIA routing: <b>6-7 days</b> of Gift/Outing/Shop<br />
-                                Standard number of Classrooms/Business: <b>4 days</b> (Master), <b>7 days</b> (NIA)
                             </div>
 
                             <label for="gift">Gift</label>
@@ -642,10 +653,9 @@ class Weights extends React.Component {
                         </div>
                         <br />
                         <div className="weight-row">
-                            <div className="section-header">Classroom Stats</div>
+                            <div className="section-header">Classroom/Job Stats</div>
                             <div className="section-explanation">
-                                Master Mode Classroom stat gain: <b>25</b>/<b>50</b>, <b>25</b>/<b>50</b>, <b>30</b>/<b>55</b>/<b>80</b>, <b>0</b>/<b>45</b>/<b>110</b><br />
-                                NIA Mode Business stat gain: <b>60</b>*3 (term 1), <b>80</b>*2 (term 2), <b>100</b>*2 (term 3)
+                                Stat gain from jobs/classrooms
                             </div>
                             <label for="classroomStats.0">Voice</label>
                             <NumericInput onChange={this.onGeneralSettingChanged} type="number" id="classroomStats.0" value={this.state.general.classroomStats[0]} min={0} max={1000} step={1} />
@@ -658,13 +668,7 @@ class Weights extends React.Component {
                         <div className="weight-row">
                             <div className="section-header">Lesson & Audition Parameters</div>
                             <div className="section-subheader">
-                                Note: 'Lessons' is the number of SP, Normal, and Oikomi lessons<br />
-                            </div>
-                            <div className="section-explanation">
-                                Normal Lessons base stat gain: <b>60</b> (Pro Only), <b>60</b>, <b>110</b>, <b>120</b>, <b>150</b> (Classroom: <b>90</b> (Pro Only))<br />
-                                SP Lessons base stat gain: <b>90</b>, <b>170</b>, <b>200</b>, <b>220</b><br />
-                                Oikomi Lessons stat gain: <b>90+90</b> and <b>165+145</b><br />
-                                NIA Lessons stat gain (normal/SP): <b>80</b>/<b>100</b>*2 (term 1), <b>100</b>/<b>120</b>*3 (term 2), <b>120</b>/<b>150</b>*3 (term 3)
+                                Note: 'Lessons' is the number of SP, Normal, and Catch-up lessons<br />
                             </div>
                             <div className="section-subheader">
                                 Vocal Lessons
@@ -793,14 +797,14 @@ class Weights extends React.Component {
 
                         <div className="weight-row">
                             <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state.general.eventStats} id="eventStats" />
-                            <label for="eventStats">Include event stats?</label>
+                            <label for="eventStats">Include support event stats?</label>
                         </div>
 
 
                         {/* 
                         <div className="weight-row">
                         <input type="checkbox" onChange={this.onGeneralSettingChanged} checked={this.state.general.hajime} id="hajime" />
-                            <label for="hajime">Hajime?</label>
+                            <label for="hajime">Include scenario stats?</label>
                         </div>
                         */}
 
@@ -808,6 +812,17 @@ class Weights extends React.Component {
 
                     </>
                 }
+                <div className="weight-row">
+                    <input id="voice" type="image" className={this.state.currentState == "voice" ? "image-btn selected" : "image-btn"} src={VoiceIcon} onClick={this.onTypeChanged} alt="Voice" />
+                    <input id="dance" type="image" className={this.state.currentState == "dance" ? "image-btn selected" : "image-btn"} src={DanceIcon} onClick={this.onTypeChanged} alt="Dance" />
+                    <input id="visual" type="image" className={this.state.currentState == "visual" ? "image-btn selected" : "image-btn"} src={VisualIcon} onClick={this.onTypeChanged} alt="Visual" />
+                    <input id="assist" type="image" className={this.state.currentState == "assist" ? "image-btn selected" : "image-btn"} src={AssistIcon} onClick={this.onTypeChanged} alt="Assist" />
+                    <br />
+                    <input type="image" className={this.state.general.plan === 4 ? "image-btn selectedPlan" : "image-btn"} src={FreeIcon} onClick={() => this.onPlanChanged(4)} alt="Free" />
+                    <input type="image" className={this.state.general.plan === 1 ? "image-btn selectedPlan" : "image-btn"} src={SenseIcon} onClick={() => this.onPlanChanged(1)} alt="Sense" />
+                    <input type="image" className={this.state.general.plan === 2 ? "image-btn selectedPlan" : "image-btn"} src={LogicIcon} onClick={() => this.onPlanChanged(2)} alt="Logic" />
+                    <input type="image" className={this.state.general.plan === 3 ? "image-btn selectedPlan" : "image-btn"} src={AnomIcon} onClick={() => this.onPlanChanged(3)} alt="Anomaly" />
+                </div>
             </div>
 
         );

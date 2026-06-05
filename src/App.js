@@ -14,6 +14,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             weights: {
+                plan: 1,
                 preset: 12,
                 statDist: [0, 0, 0],
                 idolStats: [80, 80, 80],
@@ -107,7 +108,7 @@ class App extends React.Component {
             <div className="App">
                 <h1>Gakuen iDOLM@STER Support Card Tier List</h1>
                 <span className="section-explanation">
-                    (Last updated: 26/05/2026)<br />
+                    (Last updated: 27/05/2026)<br />
                     This website is a fork of this <a href="https://euophrys.github.io/uma-tiers/">Uma Musume Tier List website</a>.<br />
                     This tier list only considers stats from Support Abilities. It does not consider Signature quality, Card Events, or stats from Produce Items.<br/>
                 </span>

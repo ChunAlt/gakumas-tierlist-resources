@@ -231,6 +231,10 @@ label {
     filter:grayscale(100%);
 }
 
+.selectedPlan {
+    filter: invert(100%);
+}
+
 .btn-preset {
     margin-left: 2px;
     margin-right: 2px;

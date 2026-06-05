@@ -63,6 +63,14 @@ class TierList extends React.Component {
             cards = cards.filter(e => e.type === this.props.weights.type);
         }
 
+        console.log("tierlist")
+        console.log(this.props.weights.plan)
+
+        if (this.props.weights.plan === 4) {
+        } else {
+            cards = cards.filter(e => e.plan === this.props.weights.plan || e.plan === 0);
+        }
+
         let processedCards = processCards(cards, this.props.weights, this.props.selectedCards);
 
         if (processedCards.length === 0) {

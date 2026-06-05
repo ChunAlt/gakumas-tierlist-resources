@@ -343,8 +343,12 @@ function SelectedCards(props) {
             <br />
             {signatures}
             <div>
+                {/*
                 Original Hajime - SP Rate: <b>{spRateMaster[0]}%</b>/<b>{spRateMaster[1]}%</b>/<b>{spRateMaster[2]}%</b> - Probability at least 1 SP each week: <b>{spRateMasterRound.toFixed(2)}%</b><br />
                 NIA and Beyond - SP Rate: <b>{spRateNIA[0]}%</b>/<b>{spRateNIA[1]}%</b>/<b>{spRateNIA[2]}%</b> - Probability at least 1 SP each week: <b>{spRateNIARound.toFixed(2)}%</b><br />
+                */}
+                Original Hajime - SP Rate: <b>{spRateMaster[0]}%</b>/<b>{spRateMaster[1]}%</b>/<b>{spRateMaster[2]}%</b><br />
+                NIA and Beyond - SP Rate: <b>{spRateNIA[0]}%</b>/<b>{spRateNIA[1]}%</b>/<b>{spRateNIA[2]}%</b><br />
                 <i>(Base rates can be set to negative to find the probability of runs with, e.g., only Primary/Secondary SP Lessons)</i><br />
                 Average gain per stat event: <b>{eventAverage}</b><br />
                 Starting P Points: <b>{pPoints}</b>

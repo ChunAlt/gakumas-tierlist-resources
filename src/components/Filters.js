@@ -9,7 +9,7 @@ class Filters extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ssr:[true,false,false,false,true],
+            ssr:[false,false,false,false,true],
             sr:[false,false,false,false,true],
             r: [false,false,false,false,false],
         };
