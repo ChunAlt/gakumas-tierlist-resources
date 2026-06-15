@@ -8,6 +8,7 @@ import FreeIcon from '../icons/utx_ico_obtain_10.png';
 import SenseIcon from '../icons/utx_ico_obtain_11.png';
 import LogicIcon from '../icons/utx_ico_obtain_12.png';
 import AnomIcon from '../icons/utx_ico_obtain_13.png';
+import AllIcon from '../icons/utx_ico_obtain_14.png';
 import allPresets from '../presets';
 import { lsTest } from '../utils';
 
@@ -74,8 +75,8 @@ function defaultState() {
         presets: true,
         show: false,
         general: {
-            plan: 1,
-            preset: 13,
+            plan: 4,
+            preset: 15,
             statDist: [0, 0, 0],
             idolStats: [80, 80, 80],
             idolMult: [15, 15, 15],
@@ -83,9 +84,9 @@ function defaultState() {
             memMult: [3, 3, 3],
             memPoints: 30,
             statCap: 3200,
-            vocalLessons: [1460, 2, 2, 0],
-            danceLessons: [1090, 6, 6, 0],
-            visualLessons: [1460, 2, 2, 0],
+            vocalLessons: [1620, 0, 0, 0],
+            danceLessons: [1000, 8, 8, 0],
+            visualLessons: [1620, 0, 0, 0],
             spBonus20: 0,
             spRate: [5, 5, 5],
             rest: 0,
@@ -93,10 +94,10 @@ function defaultState() {
             date: 1,
             shop: 3,
             classroom: 6,
-            classroomStats: [120, 0, 780],
+            classroomStats: [120, 0, 120],
             sGuidance: 1,
             replace: 5,
-            drink: [36, 10],
+            drink: [34, 8],
             upgrade: [1, 2],
             cardAcq: [7, 12, 5, 7, 7, 10, 10, 12, 7, 12, 12],
             delete: [5, 2, 2],
@@ -520,9 +521,13 @@ class Weights extends React.Component {
                                             <option value={11}>Bond 20: 3 Gifts, 3 Shops (Drinks Route)</option>
                                             <option value={12}>Bond 27: 4 Gifts, 2 Shops (Drinks Route)</option>
                                         </optgroup>
-                                        <optgroup label="HIF (Tentative)">
-                                            <option value={13}>5 Gifts, 1 Date (Drinks Route)</option>
-                                            <option value={14}>4 Gifts, 2 Date (Drinks Route)</option>
+                                        <optgroup label="HIF">
+                                            <option value="-1" disabled>-- 2 Primary + 6 Secondary Lessons --</option>
+                                            <option value={13}>5 Gifts, 1 Date (Drinks Route) (2:6:0)</option>
+                                            <option value={14}>4 Gifts, 2 Date (Drinks Route) (2:6:0)</option>
+                                            <option value="-1" disabled>-- 8 Secondary Lessons --</option>
+                                            <option value={15}>5 Gifts, 1 Date (Drinks Route) (0:8:0)</option>
+                                            <option value={16}>4 Gifts, 2 Date (Drinks Route) (0:8:0)</option>
                                         </optgroup>
                                     </select>
                                     <button id="reset-weights-Pro" type="button" onClick={this.onPreset}>Set</button>
@@ -818,10 +823,11 @@ class Weights extends React.Component {
                     <input id="visual" type="image" className={this.state.currentState == "visual" ? "image-btn selected" : "image-btn"} src={VisualIcon} onClick={this.onTypeChanged} alt="Visual" />
                     <input id="assist" type="image" className={this.state.currentState == "assist" ? "image-btn selected" : "image-btn"} src={AssistIcon} onClick={this.onTypeChanged} alt="Assist" />
                     <br />
-                    <input type="image" className={this.state.general.plan === 4 ? "image-btn selectedPlan" : "image-btn"} src={FreeIcon} onClick={() => this.onPlanChanged(4)} alt="Free" />
+                    <input type="image" className={this.state.general.plan === 0 ? "image-btn selectedPlan" : "image-btn"} src={FreeIcon} onClick={() => this.onPlanChanged(0)} alt="Free" />
                     <input type="image" className={this.state.general.plan === 1 ? "image-btn selectedPlan" : "image-btn"} src={SenseIcon} onClick={() => this.onPlanChanged(1)} alt="Sense" />
                     <input type="image" className={this.state.general.plan === 2 ? "image-btn selectedPlan" : "image-btn"} src={LogicIcon} onClick={() => this.onPlanChanged(2)} alt="Logic" />
                     <input type="image" className={this.state.general.plan === 3 ? "image-btn selectedPlan" : "image-btn"} src={AnomIcon} onClick={() => this.onPlanChanged(3)} alt="Anomaly" />
+                    <input type="image" className={this.state.general.plan === 4 ? "image-btn selectedPlan" : "image-btn"} src={AllIcon} onClick={() => this.onPlanChanged(4)} alt="All" />
                 </div>
             </div>
 

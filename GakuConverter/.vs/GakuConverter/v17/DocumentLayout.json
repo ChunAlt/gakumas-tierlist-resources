@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|solutionrelative:GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\SelectedCards.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
@@ -10,10 +14,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\Weights.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{347D1973-6A8D-46E9-A330-3535F5A7B67F}|GakuConverter.pyproj|solutionrelative:GakuConverter.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Chun\\gakumas-tierlist\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +34,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SelectedCards.js",
               "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\SelectedCards.js",
               "RelativeDocumentMoniker": "..\\src\\components\\SelectedCards.js",
@@ -47,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TierList.js",
               "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\TierList.js",
               "RelativeDocumentMoniker": "..\\src\\components\\TierList.js",
@@ -71,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Weights.js",
               "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\src\\components\\Weights.js",
               "RelativeDocumentMoniker": "..\\src\\components\\Weights.js",
@@ -83,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "GakuConverter.py",
               "DocumentMoniker": "C:\\Users\\Chun\\gakumas-tierlist\\GakuConverter\\GakuConverter.py",
               "RelativeDocumentMoniker": "GakuConverter.py",
@@ -91,7 +91,8 @@
               "RelativeToolTip": "GakuConverter.py",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-12-27T21:01:36.922Z"
+              "WhenOpened": "2024-12-27T21:01:36.922Z",
+              "EditorCaption": ""
             }
           ]
         }
